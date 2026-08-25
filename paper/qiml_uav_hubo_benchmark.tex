@@ -218,7 +218,7 @@ The model remains a grid abstraction without quadrotor dynamics, velocity, accel
 This paper presents a feasibility-aware HUBO/QUBO benchmark and solver-analysis framework for UAV obstacle-avoidance with visibility cost. The higher-order structure comes from sustained temporal proximity to obstacle-buffer cells. The unified comparison with A*, RRT-best, QUAV-style QAOA, trajectory-SA, \texttt{neal}, and exact CP-SAT shows that geometric path quality, native HUBO energy, and full trajectory validity are different metrics. The CP-SAT run certifies the best observed SA path as optimal for the hard-feasible native-HUBO soft objective, while \texttt{neal} after quadratization has zero full-task success in the tested reads. The main contribution is therefore a rigorous quantum-compatible benchmark and feasibility-aware evaluation protocol, not a quantum-speedup claim.
 
 \section*{Code Availability}
-The code package for this revision includes the HUBO builder, A* baseline, RRT/QUAV-style baseline, trajectory-SA, \texttt{neal} benchmark, exact CP-SAT baseline, companion MILP model, plotting scripts, and result logs. A public repository or supplementary-material link should be inserted before submission.
+The code package for this revision includes the HUBO builder, A* baseline, RRT/QUAV-style baseline, trajectory-SA, \texttt{neal} benchmark, exact CP-SAT baseline, companion MILP model, plotting scripts, and result logs. The code and supplementary materials are available through the project repository~\cite{mohammadiGithub}: \url{https://github.com/alimohammadi44/uav-hubo-qiml-2026/tree/main}.
 
 \begin{thebibliography}{99}
 \bibitem{innan2025quav} N. Innan, M. Kashif, A. Marchisio, Y.-S. Gan, F. Barbaresco, and M. Shafique, ``QUAV: Quantum-assisted path planning and optimization for UAV navigation with obstacle avoidance,'' in \emph{Proc. IEEE Int. Conf. Quantum Artificial Intelligence (QAI)}, 2025, pp. 208--215, doi: 10.1109/QAI63978.2025.00040.
@@ -246,6 +246,7 @@ The code package for this revision includes the HUBO builder, A* baseline, RRT/Q
 \bibitem{dimod} ``dimod: Binary quadratic model library,'' software package.
 \bibitem{rosenberg1975} I. G. Rosenberg, ``Reduction of bivalent maximization to the quadratic case,'' \emph{Cahiers du Centre d'Etudes de Recherche Op\'erationnelle}, vol. 17, pp. 71--79, 1975.
 \bibitem{ortools} L. Perron and V. Furnon, ``OR-Tools,'' Google, software package, \url{https://developers.google.com/optimization}.
+\bibitem{mohammadiGithub} A. Mohammadi, ``UAV HUBO/QUBO benchmark code and supplementary materials,'' GitHub, 2026. [Online]. Available: \url{https://github.com/alimohammadi44/uav-hubo-qiml-2026/tree/main}.
 \end{thebibliography}
 
 \end{document}
