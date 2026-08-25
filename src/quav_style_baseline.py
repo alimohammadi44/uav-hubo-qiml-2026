@@ -529,12 +529,13 @@ def write_report(results: List[dict], qaoa_info: dict, candidates: List[Path]):
     lines.append(f"QAOA-selected candidate index: {qaoa_info['selected_index']}")
     lines.append(f"Best one-hot state probability: {qaoa_info['best_state_probability']:.4f}")
     lines.append("")
-    lines.append("| Method | Full success | Path length | Turns | Buffer steps | Visibility | QUAV-style cost | HUBO energy |")
-    lines.append("|---|---:|---:|---:|---:|---:|---:|---:|")
+    lines.append("| Method | Full success | Path length | Turns | Buffer steps | Visibility | QUAV-style cost | HUBO energy | Runtime (s) |")
+    lines.append("|---|---:|---:|---:|---:|---:|---:|---:|---:|")
     for r in results:
         lines.append(
             f"| {r['method']} | {r['full_task_success']} | {r['path_length_steps']} | {r['turns']} | "
-            f"{r['buffer_steps']} | {100*r['visibility_rate']:.1f}% | {r['quav_style_cost']:.2f} | {r['hubo_energy']:.2f} |"
+            f"{r['buffer_steps']} | {100*r['visibility_rate']:.1f}% | {r['quav_style_cost']:.2f} | "
+            f"{r['hubo_energy']:.2f} | {r['runtime_seconds']:.6f} |"
         )
     with open(os.path.join(OUT_DIR, "quav_style_report.md"), "w") as f:
         f.write("\n".join(lines))
@@ -567,8 +568,10 @@ def main():
     a_path = astar_path(s)
     astar_runtime = time.time() - t0
 
+    t_rrt = time.perf_counter()
     rrt_paths = [rrt_grid_path(s, seed=i, max_iter=1200, goal_bias=0.12) for i in range(200, 240)]
     rrt_best = min(rrt_paths, key=lambda p: quav_style_cost(p, s))
+    rrt_runtime = time.perf_counter() - t_rrt
 
     candidates = generate_candidate_paths(s, n_random_astar=80, n_rrt=80)
     if not candidates:
@@ -592,7 +595,7 @@ def main():
         evaluate_method("QUAV-style QAOA", q_path, s, grid, hubo),
     ]
     results[0]["runtime_seconds"] = astar_runtime
-    results[1]["runtime_seconds"] = None
+    results[1]["runtime_seconds"] = rrt_runtime
     results[2]["runtime_seconds"] = quav_runtime
 
     payload = {
@@ -626,7 +629,8 @@ def main():
             f"{r['method']:16s} success={str(r['full_task_success']):5s} "
             f"length={r['path_length_steps']:2d} turns={r['turns']:2d} "
             f"buffer={r['buffer_steps']:2d} visibility={100*r['visibility_rate']:5.1f}% "
-            f"quav_cost={r['quav_style_cost']:7.2f} hubo_energy={r['hubo_energy']:10.2f}"
+            f"quav_cost={r['quav_style_cost']:7.2f} hubo_energy={r['hubo_energy']:10.2f} "
+            f"runtime={r['runtime_seconds']:.6f}s"
         )
     print("\nSaved outputs to:", OUT_DIR)
 
