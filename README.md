@@ -34,6 +34,32 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Apple M2 Max runtime benchmark
+
+Run the complete publication-timing workflow on the Apple M2 Max from the
+repository root:
+
+```bash
+./run_m2max_benchmark.command
+```
+
+The first run creates an isolated `.venv-m2max` environment and installs the
+requirements. The complete workflow may take 30--65 minutes because it runs
+the full 50-run trajectory-SA experiment. It records solver-level wall-clock
+times while excluding plotting and file-serialization time.
+
+The command produces:
+
+```text
+results/m2max_runtime_benchmark.json
+results/m2max_runtime_benchmark.csv
+results/unified_comparison_m2max.csv
+```
+
+Send these three files to the paper maintainer before replacing the runtime
+column in Table II. The existing paper PDF is intentionally not changed by the
+benchmark command.
+
 ## Notes for reviewers/authors
 
 - `neal` is a classical simulated annealing sampler, not hardware.

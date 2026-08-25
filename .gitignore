@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .venv/
+.venv-m2max/
 .DS_Store
 *.aux
 *.log
