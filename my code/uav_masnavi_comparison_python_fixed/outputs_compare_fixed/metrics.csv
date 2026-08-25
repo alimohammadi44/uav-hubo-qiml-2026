@@ -1,4 +1,0 @@
-method,runtime_s,path_length,smoothness_sum_squared_acceleration,min_point_obstacle_clearance,min_motion_obstacle_clearance,min_los_clearance,visibility_percent,collision_free_percent,motion_collision_free_percent,start_error,terminal_error,hard_feasible
-A* hard-LOS,0.02964073700013614,8.0,3.0,0.7071067811865476,0.7071067811865476,0.4242640687119287,100.0,100.0,100.0,0.0,0.0,True
-SA hard-LOS HUBO,8.220476402999793,8.0,3.0,0.7071067811865476,0.7071067811865476,0.4242640687119287,100.0,100.0,100.0,0.0,0.0,True
-Masnavi-style continuous,9.399280995000026,7.07106784112189,1.2996138719142592e-09,0.42830370686132035,0.424373011841246,0.4242640687119287,100.0,100.0,100.0,0.0,0.0,True

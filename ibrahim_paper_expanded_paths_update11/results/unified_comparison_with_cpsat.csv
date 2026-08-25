@@ -1,7 +1,0 @@
-Method,Feasible,Goal arrival,Full success,Path length,Turns,Buffer steps,Visibility,Native HUBO energy,Runtime s
-A*,Yes,Yes,Yes,14,7,4,0.85,-20742.26,0.028
-RRT-best,Yes,Yes,Yes,14,5,4,0.7,-20700.19,N/R
-QUAV-style QAOA,Yes,Yes,Yes,14,1,3,0.8,-20725.94,4.11
-CP-SAT exact,Yes,Yes,Yes,14,6,4,0.85,-20752.43,1.0173
-HUBO trajectory-SA,100.0%,16.0%,16.0%,14,6,4,0.85,-20752.43,1207.26
-HUBO->QUBO/neal,12.0%,8.0%,0.0%,18,12,2,0.2,-20060.47,6.15

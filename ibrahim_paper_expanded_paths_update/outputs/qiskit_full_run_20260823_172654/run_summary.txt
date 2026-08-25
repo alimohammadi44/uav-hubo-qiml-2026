@@ -1,9 +1,0 @@
-============================================================
-Ibrahim QIML Qiskit/Hamiltonian full run
-Root: /Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/ibrahim_paper_expanded_paths_update
-Run dir: outputs/qiskit_full_run_20260823_172654
-Date: Sun 23 Aug 2026 17:26:54 EDT
-============================================================
-[1/2] Running qiskit_hubo_pauli_mapping.py ...
-Mapping exit code: 0
-[2/2] Running task3_qiskit_qaoa.py ...

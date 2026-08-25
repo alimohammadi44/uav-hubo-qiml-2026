@@ -1,4 +1,0 @@
-method,runtime_s,path_length,smoothness_sum_squared_acceleration,min_point_obstacle_clearance,min_motion_obstacle_clearance,min_los_clearance,visibility_percent,total_soft_occlusion_cost,start_error,terminal_error,structural_feasible
-A* soft-LOS,0.03608863800036488,5.414213562373095,3.0,0.65,0.65,0.65,100.0,0.0,0.0,0.0,True
-SA soft-LOS HUBO,6.673559769999883,5.414213562373095,3.0,0.65,0.65,0.65,100.0,0.0,0.0,0.0,True
-Masnavi-style continuous soft-LOS,10.791828424999949,5.099019514140662,3.8536351284618737e-10,0.050004589027491664,0.0422251553706709,0.050004589027491664,100.0,0.0,0.0,0.0,True
