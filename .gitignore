@@ -1,9 +1,0 @@
-__pycache__/
-*.pyc
-.venv/
-.DS_Store
-*.aux
-*.log
-*.out
-*.synctex.gz
-outputs/
