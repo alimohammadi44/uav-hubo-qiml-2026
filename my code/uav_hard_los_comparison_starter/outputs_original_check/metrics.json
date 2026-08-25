@@ -1,0 +1,58 @@
+{
+  "scenario": {
+    "grid_size": 8,
+    "horizon": 15,
+    "start": [
+      0,
+      0
+    ],
+    "target": [
+      7,
+      7
+    ],
+    "obstacles": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "num_cells": 64,
+    "num_obstacles": 6,
+    "num_visible_cells": 46,
+    "num_free_visible_cells": 41,
+    "start_visible": false,
+    "target_visible": true
+  },
+  "hubo": {
+    "num_variables": 960,
+    "num_terms": 87684,
+    "term_summary": {
+      "linear": 960,
+      "quadratic": 83552,
+      "cubic": 3172,
+      "higher": 0
+    }
+  },
+  "astar": null,
+  "sa": null
+}

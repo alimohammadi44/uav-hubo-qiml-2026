@@ -1,0 +1,50 @@
+{
+  "scenario": {
+    "grid_size": 8,
+    "horizon_points": 15,
+    "start": [
+      0,
+      0
+    ],
+    "target": [
+      7,
+      7
+    ],
+    "obstacles": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "obstacle_radius": 0.7071067811865476,
+    "num_cells": 64,
+    "num_obstacles": 6,
+    "num_free_cells": 58,
+    "num_visible_cells": 35,
+    "num_free_visible_cells": 35,
+    "start_visible": false,
+    "target_visible": true,
+    "start_los_clearance": -0.7071067811865476
+  },
+  "reason": "No hard-LOS path found. Start may be occluded or target unreachable."
+}

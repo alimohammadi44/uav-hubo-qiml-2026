@@ -1,0 +1,153 @@
+====================================================================
+  Task 2  —  Grid-Based HUBO for UAV Obstacle Avoidance
+====================================================================
+
+Scenario  : 8×8 grid, horizon = 20 steps
+  Start   : (0, 0)
+  Target  : (7, 7)  (Manhattan dist = 14)
+  Obstacles (6): [(3, 3), (3, 4), (4, 3), (4, 4), (2, 6), (5, 1)]
+  Buffer cells : 24
+  |V|          : 64
+  Variables    : 20 × 64 = 1280
+
+Building HUBO ...
+  Variables      : 1280
+  Total terms    : 118344
+  Term breakdown : {'linear': 1280, 'quadratic': 112672, 'cubic': 4392, 'higher': 0}
+  Cubic terms    : 4392  → genuine HUBO (not QUBO)
+
+Building greedy initial trajectory ...
+  Path   : [(0, 0), (1, 0), (1, 1), (1, 2), (2, 2), (2, 3), (2, 4), (2, 5), (3, 5), (4, 5), (5, 5), (5, 6), (6, 6), (6, 7), (7, 7), (7, 7), (7, 7), (7, 7), (7, 7), (7, 7)]
+  Energy : -20651.26
+  Feasibility: {'uniqueness_violations': 0, 'start_violation': False, 'move_violations': 0, 'obstacle_collisions': 0}
+
+Running SA with multiple restarts ...
+
+  --- Restart 1/5 ---
+  Init: greedy path  (energy -20651.26)
+  sweep    0/500  T= 24.6118  energy=   -20605.18  best=   -20651.26
+  sweep   50/500  T= 11.2551  energy=   -20660.45  best=   -20729.36
+  sweep  100/500  T=  5.1470  energy=   -20724.92  best=   -20746.43
+  sweep  150/500  T=  2.3538  energy=   -20752.43  best=   -20752.43
+  sweep  200/500  T=  1.0764  energy=   -20752.43  best=   -20752.43
+  sweep  250/500  T=  0.4922  energy=   -20752.43  best=   -20752.43
+  sweep  300/500  T=  0.2251  energy=   -20752.43  best=   -20752.43
+  sweep  350/500  T=  0.1029  energy=   -20752.43  best=   -20752.43
+  sweep  400/500  T=  0.0471  energy=   -20752.43  best=   -20752.43
+  sweep  450/500  T=  0.0215  energy=   -20752.43  best=   -20752.43
+  Best energy this restart: -20752.4288
+  ✓ New overall best!
+
+  --- Restart 2/5 ---
+  Init: random walk  (energy -19936.26)
+  sweep    0/500  T= 24.6118  energy=   -19930.75  best=   -19936.26
+  sweep   50/500  T= 11.2551  energy=   -20319.97  best=   -20319.97
+  sweep  100/500  T=  5.1470  energy=   -20354.52  best=   -20370.44
+  sweep  150/500  T=  2.3538  energy=   -20369.29  best=   -20375.45
+  sweep  200/500  T=  1.0764  energy=   -20369.84  best=   -20375.45
+  sweep  250/500  T=  0.4922  energy=   -20369.84  best=   -20375.45
+  sweep  300/500  T=  0.2251  energy=   -20369.84  best=   -20375.45
+  sweep  350/500  T=  0.1029  energy=   -20369.84  best=   -20375.45
+  sweep  400/500  T=  0.0471  energy=   -20369.84  best=   -20375.45
+  sweep  450/500  T=  0.0215  energy=   -20369.84  best=   -20375.45
+  Best energy this restart: -20375.4523
+
+  --- Restart 3/5 ---
+  Init: random walk  (energy -19784.20)
+  sweep    0/500  T= 24.6118  energy=   -19814.60  best=   -19814.60
+  sweep   50/500  T= 11.2551  energy=   -20236.01  best=   -20309.78
+  sweep  100/500  T=  5.1470  energy=   -20364.92  best=   -20394.02
+  sweep  150/500  T=  2.3538  energy=   -20391.36  best=   -20397.17
+  sweep  200/500  T=  1.0764  energy=   -20396.45  best=   -20397.88
+  sweep  250/500  T=  0.4922  energy=   -20396.84  best=   -20398.23
+  sweep  300/500  T=  0.2251  energy=   -20398.23  best=   -20398.23
+  sweep  350/500  T=  0.1029  energy=   -20398.23  best=   -20398.23
+  sweep  400/500  T=  0.0471  energy=   -20398.23  best=   -20398.23
+  sweep  450/500  T=  0.0215  energy=   -20398.23  best=   -20398.23
+  Best energy this restart: -20398.2268
+
+  --- Restart 4/5 ---
+  Init: random walk  (energy -19839.38)
+  sweep    0/500  T= 24.6118  energy=   -19841.55  best=   -19844.83
+  sweep   50/500  T= 11.2551  energy=   -20155.54  best=   -20194.21
+  sweep  100/500  T=  5.1470  energy=   -20182.29  best=   -20216.08
+  sweep  150/500  T=  2.3538  energy=   -20284.26  best=   -20284.85
+  sweep  200/500  T=  1.0764  energy=   -20279.14  best=   -20284.85
+  sweep  250/500  T=  0.4922  energy=   -20284.78  best=   -20284.85
+  sweep  300/500  T=  0.2251  energy=   -20284.78  best=   -20284.85
+  sweep  350/500  T=  0.1029  energy=   -20284.85  best=   -20284.85
+  sweep  400/500  T=  0.0471  energy=   -20284.85  best=   -20284.85
+  sweep  450/500  T=  0.0215  energy=   -20284.85  best=   -20284.85
+  Best energy this restart: -20284.8454
+
+  --- Restart 5/5 ---
+  Init: random walk  (energy -20061.06)
+  sweep    0/500  T= 24.6118  energy=   -20052.48  best=   -20102.78
+  sweep   50/500  T= 11.2551  energy=   -20199.64  best=   -20248.63
+  sweep  100/500  T=  5.1470  energy=   -20293.25  best=   -20294.74
+  sweep  150/500  T=  2.3538  energy=   -20300.63  best=   -20302.95
+  sweep  200/500  T=  1.0764  energy=   -20299.17  best=   -20304.71
+  sweep  250/500  T=  0.4922  energy=   -20304.53  best=   -20304.71
+  sweep  300/500  T=  0.2251  energy=   -20304.53  best=   -20304.71
+  sweep  350/500  T=  0.1029  energy=   -20304.53  best=   -20304.71
+  sweep  400/500  T=  0.0471  energy=   -20304.53  best=   -20304.71
+  sweep  450/500  T=  0.0215  energy=   -20304.53  best=   -20304.71
+  Best energy this restart: -20304.7073
+
+────────────────────────────────────────────────────
+  Best energy across all restarts : -20752.4288
+  Total runtime                   : 122.32s
+  Acceptance rate                 : 0.2005
+────────────────────────────────────────────────────
+
+Feasibility check:
+  uniqueness_violations              : 0  ✓ OK
+  start_violation                    : False  ✓ OK
+  move_violations                    : 0  ✓ OK
+  obstacle_collisions                : 0  ✓ OK
+  Overall: ✓ FEASIBLE
+  Reaches target at final step: YES ✓
+
+Decoded UAV trajectory:
+  t= 0: (0, 0)        ← occluded(2)
+  t= 1: (0, 1)        ← occluded(2)
+  t= 2: (0, 2)        ← occluded(1)
+  t= 3: (0, 3)      
+  t= 4: (0, 4)      
+  t= 5: (1, 4)      
+  t= 6: (2, 4)        ← buffer
+  t= 7: (2, 5)        ← buffer
+  t= 8: (3, 5)        ← buffer
+  t= 9: (4, 5)        ← buffer
+  t=10: (4, 6)      
+  t=11: (5, 6)      
+  t=12: (6, 6)      
+  t=13: (7, 6)      
+  t=14: (7, 7)        ← TARGET ★
+  t=15: (7, 7)        ← TARGET ★
+  t=16: (7, 7)        ← TARGET ★
+  t=17: (7, 7)        ← TARGET ★
+  t=18: (7, 7)        ← TARGET ★
+  t=19: (7, 7)        ← TARGET ★
+
+Saving outputs ...
+  Saved: bitstring.npy / bitstring.txt
+  Saved: trajectory.csv
+  Saved: energy_history.npy
+  Saved: metadata.json
+  Saved: energy_trace.png
+  Saved: trajectory.png
+  Saved: cost_landscape.png
+
+====================================================================
+  FINAL SUMMARY
+====================================================================
+  Formulation   : Grid-based HUBO
+  Variables     : 1280  (horizon 20 × 64 cells)
+  Terms         : 118344  (4392 cubic → genuine HUBO)
+  Best energy   : -20752.4288
+  Runtime       : 122.32s  (5 restarts × 500 sweeps)
+  Feasible      : YES ✓
+  Reaches target: YES ✓
+  Outputs       : /Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/code_pkg/src/outputs/grid/
+====================================================================

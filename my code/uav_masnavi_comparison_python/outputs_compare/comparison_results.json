@@ -1,0 +1,109 @@
+{
+  "scenario": {
+    "grid_size": 8,
+    "horizon_points": 12,
+    "start": [
+      3,
+      0
+    ],
+    "target": [
+      7,
+      7
+    ],
+    "obstacles": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "obstacle_radius": 0.45,
+    "num_cells": 64,
+    "num_obstacles": 6,
+    "num_free_cells": 58,
+    "num_visible_cells": 41,
+    "num_free_visible_cells": 41,
+    "start_visible": true,
+    "target_visible": true,
+    "start_los_clearance": 0.17017367294604208
+  },
+  "metrics": [
+    {
+      "method": "A* hard-LOS",
+      "runtime_s": 0.06315628999982437,
+      "path_length": 11.0,
+      "smoothness_sum_squared_acceleration": 8.0,
+      "min_point_obstacle_clearance": 0.55,
+      "min_los_clearance": 0.06449575542752667,
+      "visibility_percent": 100.0,
+      "collision_free_percent": 100.0,
+      "start_error": 0.0,
+      "terminal_error": 0.0,
+      "hard_feasible": true
+    },
+    {
+      "method": "SA hard-LOS HUBO",
+      "runtime_s": 6.527755700999933,
+      "path_length": 11.0,
+      "smoothness_sum_squared_acceleration": 8.0,
+      "min_point_obstacle_clearance": 0.55,
+      "min_los_clearance": 0.06449575542752667,
+      "visibility_percent": 100.0,
+      "collision_free_percent": 100.0,
+      "start_error": 0.0,
+      "terminal_error": 0.0,
+      "hard_feasible": true
+    },
+    {
+      "method": "Masnavi-style continuous",
+      "runtime_s": 6.993440653000107,
+      "path_length": 8.062257749300807,
+      "smoothness_sum_squared_acceleration": 6.644430977970761e-10,
+      "min_point_obstacle_clearance": 0.1927456600359327,
+      "min_los_clearance": 0.17012034348727462,
+      "visibility_percent": 100.0,
+      "collision_free_percent": 100.0,
+      "start_error": 0.0,
+      "terminal_error": 0.0,
+      "hard_feasible": true
+    }
+  ],
+  "extra": {
+    "sa": {
+      "energy": 16.0,
+      "runtime_s": 6.527755700999933,
+      "acceptance_rate": 0.699359487590072,
+      "runs": 10,
+      "sweeps": 200
+    },
+    "masnavi_style_continuous": {
+      "runtime_s": 6.993440653000107,
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "objective": 0.008062258413743905,
+      "nit": 36,
+      "min_sampled_constraint_margin": 0.9271656706939091,
+      "los_samples": 9
+    },
+    "modeling_note": "Continuous baseline implements Masnavi Eq. (13)-(14) in 2-D circles and minimizes acceleration smoothness with hard start/terminal constraints."
+  }
+}

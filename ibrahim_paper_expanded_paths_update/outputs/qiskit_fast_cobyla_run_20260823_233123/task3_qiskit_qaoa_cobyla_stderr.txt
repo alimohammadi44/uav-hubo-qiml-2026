@@ -1,0 +1,73 @@
+Traceback (most recent call last):
+  File "/Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/ibrahim_paper_expanded_paths_update/src/task3_qiskit_qaoa_cobyla_fast.py", line 832, in <module>
+    main()
+  File "/Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/ibrahim_paper_expanded_paths_update/src/task3_qiskit_qaoa_cobyla_fast.py", line 690, in main
+    qaoa_result = qiskit_qaoa(qubo, builder.num_vars,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/ibrahim_paper_expanded_paths_update/src/task3_qiskit_qaoa_cobyla_fast.py", line 458, in qiskit_qaoa
+    result = optimizer.solve(qp)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/qiskit_optimization/algorithms/minimum_eigen_optimizer.py", line 204, in solve
+    return self._solve_internal(operator, offset, problem_, problem)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/qiskit_optimization/algorithms/minimum_eigen_optimizer.py", line 217, in _solve_internal
+    eigen_result = self._min_eigen_solver.compute_minimum_eigenvalue(operator)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/qiskit_algorithms/minimum_eigensolvers/sampling_vqe.py", line 238, in compute_minimum_eigenvalue
+    optimizer_result = self.optimizer.minimize(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/qiskit_algorithms/optimizers/scipy_optimizer.py", line 162, in minimize
+    raw_result = minimize(
+                 ^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/optimize/_minimize.py", line 790, in minimize
+    res = _minimize_cobyla(fun, x0, args, constraints, callback=callback,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/optimize/_cobyla_py.py", line 277, in _minimize_cobyla
+    result = minimize(sf.fun, x0, method='cobyla', bounds=bounds,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/_lib/pyprima/__init__.py", line 191, in minimize
+    result = cobyla(
+             ^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/_lib/pyprima/cobyla/cobyla.py", line 461, in cobyla
+    x, f, constr, cstrv, nf, xhist, fhist, chist, conhist, info = cobylb(
+                                                                  ^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/_lib/pyprima/cobyla/cobylb.py", line 280, in cobylb
+    f, constr = evaluate(calcfc, x, m_nlcon, amat, bvec)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/_lib/pyprima/common/evaluate.py", line 80, in evaluate
+    f, constr[m_lcon:] = calcfc(moderatex(x))
+                         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/_lib/pyprima/__init__.py", line 178, in calcfc
+    f = fun(x, *args)
+        ^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py", line 394, in fun
+    self._update_fun()
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py", line 362, in _update_fun
+    fx = self._wrapped_fun(self.x)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/scipy/_lib/_util.py", line 603, in __call__
+    fx = self.f(np.copy(x), *self.args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/qiskit_algorithms/minimum_eigensolvers/sampling_vqe.py", line 336, in evaluate_energy
+    estimator_result = job.result()[0]
+                       ^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/site-packages/qiskit/primitives/primitive_job.py", line 72, in result
+    self._result = self._future.result()
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/threading.py", line 327, in wait
+    waiter.acquire()
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/threading.py'>
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/threading.py", line 1560, in _shutdown
+    atexit_call()
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/concurrent/futures/thread.py", line 31, in _python_exit
+    t.join()
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/threading.py", line 1119, in join
+    self._wait_for_tstate_lock()
+  File "/opt/anaconda3/envs/ibrahim_qiskit/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt: 

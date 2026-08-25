@@ -1,0 +1,173 @@
+{
+  "purpose": "HUBO-to-Pauli-Z mapping for reduced IBM/Qiskit QAOA compatibility tests",
+  "full_instance_warning": "The full 8x8, L=20 state-variable model has 1280 binary variables, so direct QAOA would require about 1280 qubits.",
+  "tiny_instance": {
+    "grid": [
+      2,
+      2
+    ],
+    "L": 3,
+    "num_qubits": 12
+  },
+  "hubo_terms": 38,
+  "hubo_degree_counts": {
+    "1": 12,
+    "2": 26
+  },
+  "pauli_terms_including_constant": 39,
+  "pauli_string_order_counts": {
+    "0": 1,
+    "1": 12,
+    "2": 26
+  },
+  "constant_identity_coeff": 276.15685424949237,
+  "qiskit_available_in_this_run": true,
+  "sparse_pauli_terms_excluding_constant": 38,
+  "first_terms": [
+    {
+      "pauli_key": [],
+      "label": "IIIIIIIIIIII",
+      "coeff": 276.15685424949237
+    },
+    {
+      "pauli_key": [
+        0
+      ],
+      "label": "IIIIIIIIIIIZ",
+      "coeff": -38.442809041582066
+    },
+    {
+      "pauli_key": [
+        1
+      ],
+      "label": "IIIIIIIIIIZI",
+      "coeff": -63.16666666666667
+    },
+    {
+      "pauli_key": [
+        2
+      ],
+      "label": "IIIIIIIIIZII",
+      "coeff": -63.16666666666667
+    },
+    {
+      "pauli_key": [
+        3
+      ],
+      "label": "IIIIIIIIZIII",
+      "coeff": -62.5
+    },
+    {
+      "pauli_key": [
+        4
+      ],
+      "label": "IIIIIIIZIIII",
+      "coeff": -76.88561808316413
+    },
+    {
+      "pauli_key": [
+        5
+      ],
+      "label": "IIIIIIZIIIII",
+      "coeff": -76.33333333333333
+    },
+    {
+      "pauli_key": [
+        6
+      ],
+      "label": "IIIIIZIIIIII",
+      "coeff": -76.33333333333333
+    },
+    {
+      "pauli_key": [
+        7
+      ],
+      "label": "IIIIZIIIIIII",
+      "coeff": -75.0
+    },
+    {
+      "pauli_key": [
+        8
+      ],
+      "label": "IIIZIIIIIIII",
+      "coeff": -77.82842712474618
+    },
+    {
+      "pauli_key": [
+        9
+      ],
+      "label": "IIZIIIIIIIII",
+      "coeff": -77.0
+    },
+    {
+      "pauli_key": [
+        10
+      ],
+      "label": "IZIIIIIIIIII",
+      "coeff": -77.0
+    },
+    {
+      "pauli_key": [
+        11
+      ],
+      "label": "ZIIIIIIIIIII",
+      "coeff": -62.5
+    },
+    {
+      "pauli_key": [
+        0,
+        1
+      ],
+      "label": "IIIIIIIIIIZZ",
+      "coeff": 25.0
+    },
+    {
+      "pauli_key": [
+        0,
+        2
+      ],
+      "label": "IIIIIIIIIZIZ",
+      "coeff": 25.0
+    },
+    {
+      "pauli_key": [
+        0,
+        3
+      ],
+      "label": "IIIIIIIIZIIZ",
+      "coeff": 25.0
+    },
+    {
+      "pauli_key": [
+        0,
+        7
+      ],
+      "label": "IIIIZIIIIIIZ",
+      "coeff": 12.5
+    },
+    {
+      "pauli_key": [
+        1,
+        2
+      ],
+      "label": "IIIIIIIIIZZI",
+      "coeff": 25.0
+    },
+    {
+      "pauli_key": [
+        1,
+        3
+      ],
+      "label": "IIIIIIIIZIZI",
+      "coeff": 25.0
+    },
+    {
+      "pauli_key": [
+        1,
+        6
+      ],
+      "label": "IIIIIZIIIIZI",
+      "coeff": 12.5
+    }
+  ]
+}

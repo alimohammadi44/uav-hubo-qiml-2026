@@ -1,0 +1,2 @@
+method,status,success,runtime_s,objective_soft_cost,native_hubo_energy,feasible,goal_arrival,full_success,path_length,turns,buffer_steps,visibility_rate
+MILP exact baseline (scipy HiGHS),0,True,2.064175043000432,247.57121765726575,-20752.42878234273,True,True,True,14,7,4,0.85

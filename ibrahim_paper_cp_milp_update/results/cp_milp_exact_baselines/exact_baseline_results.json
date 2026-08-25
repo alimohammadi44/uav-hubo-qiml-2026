@@ -1,0 +1,112 @@
+{
+  "milp": {
+    "method": "MILP exact baseline (scipy HiGHS)",
+    "status": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "success": true,
+    "runtime_s": 2.064175043000432,
+    "objective_soft_cost": 247.57121765726575,
+    "native_hubo_energy": -20752.42878234273,
+    "mip_gap": 0.0,
+    "num_variables": 10270,
+    "num_binary_x": 1280,
+    "num_transition_variables": 4598,
+    "num_proximity_aux_variables": 4392,
+    "num_constraints": 19792,
+    "metrics": {
+      "feasible": true,
+      "goal_arrival": true,
+      "full_success": true,
+      "path_length": 14,
+      "turns": 7,
+      "buffer_steps": 4,
+      "visibility_rate": 0.85,
+      "obstacle_collisions": 0,
+      "native_hubo_energy": -20752.42878234273,
+      "hard_constant_if_feasible": -21000.0,
+      "soft_cost_if_feasible": 247.5712176572706,
+      "trajectory": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ]
+      ]
+    }
+  }
+}

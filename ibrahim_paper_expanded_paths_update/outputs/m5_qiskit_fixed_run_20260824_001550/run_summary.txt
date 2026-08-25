@@ -1,0 +1,5 @@
+mapping_exit_code=0
+qaoa_exit_code=0
+qaoa_reps=1
+qaoa_maxiter=5
+run_dir=outputs/m5_qiskit_fixed_run_20260824_001550

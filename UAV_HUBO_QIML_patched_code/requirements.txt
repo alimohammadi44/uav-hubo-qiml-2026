@@ -1,0 +1,14 @@
+numpy
+scipy
+pandas
+matplotlib
+pillow
+networkx
+tqdm
+dimod==0.12.22
+dwave-neal==0.6.0
+ortools
+qiskit==1.4.6
+qiskit-optimization
+qiskit-algorithms
+qiskit-aer

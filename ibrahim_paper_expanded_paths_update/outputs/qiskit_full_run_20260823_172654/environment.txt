@@ -1,0 +1,12 @@
+Python executable: /opt/anaconda3/envs/ibrahim_qiskit/bin/python
+Python 3.11.16
+
+Installed package versions, if available:
+qiskit: 2.5.2
+qiskit-aer: 0.17.2
+qiskit-optimization: 0.7.0
+qiskit-algorithms: 0.4.0
+dimod: 0.12.22
+dwave-neal: 0.6.0
+matplotlib: 3.11.1
+numpy: 2.4.6

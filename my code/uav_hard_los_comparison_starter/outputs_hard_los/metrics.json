@@ -1,0 +1,186 @@
+{
+  "scenario": {
+    "grid_size": 8,
+    "horizon": 12,
+    "start": [
+      3,
+      0
+    ],
+    "target": [
+      7,
+      7
+    ],
+    "obstacles": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "num_cells": 64,
+    "num_obstacles": 6,
+    "num_visible_cells": 46,
+    "num_free_visible_cells": 41,
+    "start_visible": true,
+    "target_visible": true
+  },
+  "hubo": {
+    "num_variables": 768,
+    "num_terms": 69288,
+    "term_summary": {
+      "linear": 768,
+      "quadratic": 66080,
+      "cubic": 2440,
+      "higher": 0
+    }
+  },
+  "astar": {
+    "trajectory": [
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ]
+    ],
+    "energy": -13985.0,
+    "feasibility": {
+      "start_violation": false,
+      "terminal_violation": false,
+      "move_violations": 0,
+      "obstacle_collisions": 0,
+      "los_violations": 0,
+      "visible_steps": 12,
+      "visibility_percent": 100.0,
+      "all_hard_satisfied": true
+    }
+  },
+  "sa": {
+    "best_energy": -13985.0,
+    "runtime_s": 0.8133826360001422,
+    "acceptance_rate": 0.8541666666666666,
+    "runs": 3,
+    "sweeps": 50,
+    "trajectory": [
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ]
+    ],
+    "feasibility": {
+      "start_violation": false,
+      "terminal_violation": false,
+      "move_violations": 0,
+      "obstacle_collisions": 0,
+      "los_violations": 0,
+      "visible_steps": 12,
+      "visibility_percent": 100.0,
+      "all_hard_satisfied": true
+    }
+  }
+}

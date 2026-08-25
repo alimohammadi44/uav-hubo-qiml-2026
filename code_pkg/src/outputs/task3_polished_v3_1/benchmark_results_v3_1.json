@@ -1,0 +1,91 @@
+{
+  "version": "v3.1 \u2014 SA at 500 sweeps (fair-fight)",
+  "hubo": {
+    "num_variables": 1280,
+    "num_terms": 118344,
+    "lambda_uniq_start_move": 1000
+  },
+  "methodology": "v3.1: matched 50 vs 50 samples, proper feasibility check, SA at 500 sweeps to match original Task 2 configuration.",
+  "d_wave_neal": {
+    "num_reads": 50,
+    "num_sweeps": 3000,
+    "best_total_energy": -20060.467031760134,
+    "best_soft_cost": 939.5329682398664,
+    "mean_total_energy": -19762.410705810857,
+    "std_total_energy": 86.09350915632459,
+    "runtime_s": 6.033135666999442,
+    "true_feasibility_rate": 0.12,
+    "feasible_sample_count": 6,
+    "reaches_target_rate": 0.08,
+    "best_sample_feasible": true,
+    "best_sample_reaches_target": false,
+    "best_feasible_sample": {
+      "total_energy": -20060.467031760134,
+      "soft_cost": 939.5329682398664,
+      "feasible": true,
+      "reaches_target": false
+    }
+  },
+  "classical_sa": {
+    "num_runs": 50,
+    "num_sweeps": 500,
+    "best_total_energy": -20752.428782342737,
+    "best_soft_cost": 247.57121765726575,
+    "mean_total_energy": -20392.368236851133,
+    "std_total_energy": 134.82931965998435,
+    "runtime_s": 1219.1525347499992,
+    "true_feasibility_rate": 1.0,
+    "reaches_target_rate": 0.16,
+    "best_sample_feasible": true
+  },
+  "penalty_sweep": [
+    {
+      "weight": 50,
+      "feasibility_rate": 0.0,
+      "feasible_count": 0,
+      "total_reads": 15,
+      "best_total_energy": -945.44608947566,
+      "best_feasible_soft_cost": null
+    },
+    {
+      "weight": 100,
+      "feasibility_rate": 0.0,
+      "feasible_count": 0,
+      "total_reads": 15,
+      "best_total_energy": -1929.3892352261678,
+      "best_feasible_soft_cost": null
+    },
+    {
+      "weight": 300,
+      "feasibility_rate": 0.0,
+      "feasible_count": 0,
+      "total_reads": 15,
+      "best_total_energy": -5859.706578856473,
+      "best_feasible_soft_cost": null
+    },
+    {
+      "weight": 600,
+      "feasibility_rate": 0.0,
+      "feasible_count": 0,
+      "total_reads": 15,
+      "best_total_energy": -11863.195122676469,
+      "best_feasible_soft_cost": null
+    },
+    {
+      "weight": 1000,
+      "feasibility_rate": 0.26666666666666666,
+      "feasible_count": 4,
+      "total_reads": 15,
+      "best_total_energy": -20084.593421606438,
+      "best_feasible_soft_cost": 915.4065783935632
+    },
+    {
+      "weight": 2000,
+      "feasibility_rate": 0.3333333333333333,
+      "feasible_count": 5,
+      "total_reads": 15,
+      "best_total_energy": -41409.38654967856,
+      "best_feasible_soft_cost": 590.6134503214383
+    }
+  ]
+}

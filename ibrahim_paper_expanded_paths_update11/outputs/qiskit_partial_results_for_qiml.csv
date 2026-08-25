@@ -1,0 +1,17 @@
+quantity,value
+reduced_grid,2x2
+horizon_L,3
+binary_variables_direct_qubits,12
+qubo_terms,38
+linear_terms,12
+quadratic_terms,26
+pauli_terms_including_identity,39
+identity_coefficient,276.15685424949237
+classical_SA_best_energy,-195.4477
+classical_SA_runtime_s,0.125
+classical_SA_full_success,true
+neal_best_energy,-195.4477
+neal_mean_energy,-195.4477
+neal_runtime_s,0.014
+neal_full_success,true
+qiskit_qaoa_status,initialized; interrupted during SPSA calibration before sample

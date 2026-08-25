@@ -1,0 +1,77 @@
+========================================================================
+  Task 3 — Qiskit QAOA + Three-Way Comparison on Tiny Scenario
+========================================================================
+
+Tiny scenario:
+  Grid     : 2×2
+  Horizon  : 3
+  Start    : (0, 0)
+  Target   : (1, 1)  (Manhattan dist = 2)
+  Obstacles: []
+  Variables: 12  (= T × |V| = 3 × 4)
+
+QUBO built:
+  Total terms : 38
+  Linear      : 12
+  Quadratic   : 26
+  (All terms ≤ quadratic — QAOA-ready)
+
+────────────────────────────────────────────────────────────────────────
+Solver 1 — Classical SA (bit-flip)
+────────────────────────────────────────────────────────────────────────
+  Best energy : -195.4477
+  Runtime     : 0.113s
+  Feasibility :
+    uniqueness_violations    : 0
+    start_violation          : False
+    move_violations          : 0
+    obstacle_collisions      : 0
+    reaches_target           : True
+    all_hard_satisfied       : True
+
+────────────────────────────────────────────────────────────────────────
+Solver 2 — D-Wave Neal
+────────────────────────────────────────────────────────────────────────
+  Best energy : -195.4477
+  Mean energy : -195.4477
+  Runtime     : 0.014s
+  Feasibility :
+    uniqueness_violations    : 0
+    start_violation          : False
+    move_violations          : 0
+    obstacle_collisions      : 0
+    reaches_target           : True
+    all_hard_satisfied       : True
+
+────────────────────────────────────────────────────────────────────────
+Solver 3 — Qiskit QAOA
+────────────────────────────────────────────────────────────────────────
+  Building QuadraticProgram from QUBO ...
+  Running QAOA (reps=1, SPSA maxiter=25) on 12 qubits ...
+  (Qiskit state-vector simulator)
+  Best energy : -148.1144
+  Runtime     : 1.975s
+  Feasibility :
+    uniqueness_violations    : 0
+    start_violation          : False
+    move_violations          : 1
+    obstacle_collisions      : 0
+    reaches_target           : True
+    all_hard_satisfied       : False
+
+────────────────────────────────────────────────────────────────────────
+Saving outputs ...
+────────────────────────────────────────────────────────────────────────
+  Saved: three_way_trajectories.png
+  Saved: three_way_metrics.png
+  Saved: benchmark_results.json
+  Saved: benchmark_report.md
+
+========================================================================
+  TASK 3 PART B — FINAL SUMMARY
+========================================================================
+  Classical SA  : energy=-195.45, runtime=0.11s, feasible ✓
+  D-Wave Neal   : energy=-195.45, runtime=0.01s, feasible ✓
+  Qiskit QAOA   : energy=-148.11, runtime=1.98s, infeasible ✗
+  Outputs       : /Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/UAV_HUBO_QIML_patched_code/src/outputs/task3_qiskit/
+========================================================================

@@ -1,0 +1,30 @@
+QUAV-style baseline on Ibrahim UAV HUBO scenario
+========================================================================
+Scenario  : 8×8 grid, horizon = 20 steps
+  Start   : (0, 0)
+  Target  : (7, 7)  (Manhattan dist = 14)
+  Obstacles (6): [(3, 3), (3, 4), (4, 3), (4, 4), (2, 6), (5, 1)]
+  Buffer cells : 24
+  |V|          : 64
+  Variables    : 20 × 64 = 1280
+
+Generating A*, RRT, and diverse candidate paths...
+Generated valid candidate paths: 12 used for QAOA selector
+Candidate costs: [29.5, 35.5, 36.5, 36.5, 36.5, 37.0, 37.0, 37.0, 37.0, 37.5, 37.5, 37.5]
+Running QUAV-style QAOA candidate selector...
+
+Results
+------------------------------------------------------------------------
+A*               success=True  length=14 turns= 7 buffer= 4 visibility= 85.0% quav_cost=  37.50 hubo_energy= -20742.26
+RRT-best         success=True  length=14 turns= 5 buffer= 4 visibility= 70.0% quav_cost=  36.50 hubo_energy= -20700.19
+QUAV-style QAOA  success=True  length=14 turns= 1 buffer= 3 visibility= 80.0% quav_cost=  29.50 hubo_energy= -20725.94
+
+Saved outputs to: /Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/code_pkg/src/outputs/quav_style_baseline
+
+QUAV-style baseline complete. Outputs:
+  src/outputs/quav_style_baseline/quav_style_results.json
+  src/outputs/quav_style_baseline/quav_style_report.md
+  src/outputs/quav_style_baseline/quav_style_paths.png
+  src/outputs/quav_style_baseline/quav_style_metrics.png
+  src/outputs/quav_style_baseline/quav_style_loss.png
+  results/quav_style_baseline_log.txt

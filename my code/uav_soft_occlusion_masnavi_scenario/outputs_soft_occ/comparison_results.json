@@ -1,0 +1,113 @@
+{
+  "scenario": {
+    "name": "masnavi_static_3cyl",
+    "workspace": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0
+    ],
+    "grid_step": 1.0,
+    "nx": 9,
+    "ny": 7,
+    "num_grid_nodes": 63,
+    "horizon_points": 16,
+    "start_xy": [
+      -2.0,
+      0.0
+    ],
+    "goal_xy_terminal_reference": [
+      3.0,
+      1.0
+    ],
+    "observed_target_xy_for_LOS": [
+      5.0,
+      0.0
+    ],
+    "obstacle_centers": [
+      [
+        1.0,
+        -2.5
+      ],
+      [
+        -0.5,
+        1.5
+      ],
+      [
+        1.0,
+        1.0
+      ]
+    ],
+    "obstacle_radius": 0.35,
+    "num_free_nodes": 62,
+    "start_los_clearance": 0.65,
+    "goal_los_clearance": 1.65,
+    "start_occ_cost": 0.0,
+    "goal_occ_cost": 0.0,
+    "lambda_occ": 8.0,
+    "lambda_buffer": 0.35
+  },
+  "metrics": [
+    {
+      "method": "A* soft-LOS",
+      "runtime_s": 0.03608863800036488,
+      "path_length": 5.414213562373095,
+      "smoothness_sum_squared_acceleration": 3.0,
+      "min_point_obstacle_clearance": 0.65,
+      "min_motion_obstacle_clearance": 0.65,
+      "min_los_clearance": 0.65,
+      "visibility_percent": 100.0,
+      "total_soft_occlusion_cost": 0.0,
+      "start_error": 0.0,
+      "terminal_error": 0.0,
+      "structural_feasible": true
+    },
+    {
+      "method": "SA soft-LOS HUBO",
+      "runtime_s": 6.673559769999883,
+      "path_length": 5.414213562373095,
+      "smoothness_sum_squared_acceleration": 3.0,
+      "min_point_obstacle_clearance": 0.65,
+      "min_motion_obstacle_clearance": 0.65,
+      "min_los_clearance": 0.65,
+      "visibility_percent": 100.0,
+      "total_soft_occlusion_cost": 0.0,
+      "start_error": 0.0,
+      "terminal_error": 0.0,
+      "structural_feasible": true
+    },
+    {
+      "method": "Masnavi-style continuous soft-LOS",
+      "runtime_s": 10.791828424999949,
+      "path_length": 5.099019514140662,
+      "smoothness_sum_squared_acceleration": 3.8536351284618737e-10,
+      "min_point_obstacle_clearance": 0.050004589027491664,
+      "min_motion_obstacle_clearance": 0.0422251553706709,
+      "min_los_clearance": 0.050004589027491664,
+      "visibility_percent": 100.0,
+      "total_soft_occlusion_cost": 0.0,
+      "start_error": 0.0,
+      "terminal_error": 0.0,
+      "structural_feasible": true
+    }
+  ],
+  "extra": {
+    "sa": {
+      "energy": 5.414213562373095,
+      "runtime_s": 6.673559769999883,
+      "acceptance_rate": 0.37905138339920946,
+      "runs": 5,
+      "sweeps": 50
+    },
+    "continuous": {
+      "runtime_s": 10.791828424999949,
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "objective": 0.25495097609239664,
+      "nit": 54,
+      "min_collision_margin": 0.0422251553706709,
+      "occ_weight": 8.0
+    },
+    "modeling_note": "Obstacle/collision avoidance is hard. LOS occlusion is soft and appears in the objective/cost only. Structural feasibility excludes LOS visibility."
+  }
+}

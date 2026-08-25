@@ -1,0 +1,3 @@
+Root: /Users/temp/Desktop/MHD/Quantum Computing/0Path planning_MPC/ibrahim/paper submission/ibrahim_paper_expanded_paths_update
+Run dir: outputs/qiskit_fast_cobyla_run_20260823_232523
+QAOA COBYLA exit code: 1
