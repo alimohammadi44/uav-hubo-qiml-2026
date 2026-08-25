@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 ## Notes for reviewers/authors
 
-- `neal` is a classical simulated annealing sampler, not quantum hardware.
+- `neal` is a classical simulated annealing sampler, not hardware.
 - The QUAV-style QAOA row is a candidate-path selector and is not an official QUAV implementation.
 - CP-SAT/MILP are included as exact correctness anchors.
 - Feasibility, goal arrival, and full-task success are intentionally reported separately.

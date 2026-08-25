@@ -434,7 +434,7 @@ def main():
     astar_visibility = visibility * 100
 
     table_rows = [
-        ["Metric", "Classical A*", "Classical SA", "D-Wave neal"],
+        ["Metric", "Classical A*", "Classical SA", "neal"],
         ["Best soft cost",
          f"{metrics['soft_cost']:.2f}",
          f"{sa_results['soft_cost']:.2f}",

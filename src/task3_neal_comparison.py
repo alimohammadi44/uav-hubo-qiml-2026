@@ -1,6 +1,6 @@
 """
 =============================================================================
-Task 3 — Quantum-Inspired Benchmark: D-Wave Neal vs Classical SA
+Task 3 — BQM Sampling Benchmark: neal vs Classical SA
 =============================================================================
 Based on:
   Masnavi et al., "Real-Time Multi-Convex Model Predictive Control for
@@ -11,20 +11,20 @@ PURPOSE
 Take the grid-based HUBO from Task 2 and benchmark TWO solvers on it:
 
   1. Classical simulated annealing  (already implemented in Task 2)
-  2. D-Wave neal — simulated quantum annealing
-     (D-Wave's open-source classical simulator of their QPU)
+  2. neal — simulated annealing
+     (open-source classical simulator of their sampler)
 
-WHY D-WAVE NEAL
+WHY NEAL
 ---------------
-D-Wave's `neal` library simulates the same simulated-annealing algorithm
-their quantum hardware uses internally. It runs on a CPU but uses the
-exact same code path you would use to submit to a real D-Wave QPU.
+`neal` library simulates the same simulated-annealing algorithm
+their hardware uses internally. It runs on a CPU but uses the
+exact same code path you would use to submit to a external sampler.
 This makes it the gold-standard "quantum-inspired" classical baseline
 for HUBO problems.
 
 HUBO HANDLING
 -------------
-D-Wave neal natively supports binary quadratic models (BQM). For our
+neal natively supports binary quadratic models (BQM). For our
 cubic HUBO terms, we wrap neal in `dimod.HigherOrderComposite`, which
 automatically quadratizes higher-order terms (via Rosenberg-style
 auxiliary variables) before passing the problem to neal. The user-facing
@@ -43,7 +43,7 @@ constraint satisfaction rate), this script collects for each solver:
 
 OUTPUTS  →  ./outputs/task3/
   benchmark_results.json     full numeric results
-  neal_trajectory.png        UAV path found by D-Wave neal
+  neal_trajectory.png        UAV path found by neal
   energy_distribution.png    histogram of energies across runs
   runtime_comparison.png     bar chart of runtimes
   metrics_table.png          summary metrics table
@@ -97,12 +97,12 @@ def hubo_to_binary_polynomial(hubo_dict, num_vars):
 
 
 # ===========================================================================
-# 2. SOLVE WITH D-WAVE NEAL
+# 2. SOLVE WITH NEAL
 # ===========================================================================
 
 def solve_with_neal(hubo_dict, num_vars, num_reads=100, num_sweeps=1000, seed=42):
     """
-    Solve the HUBO using D-Wave's neal.
+    Solve the HUBO using neal.
 
     Wraps neal in HigherOrderComposite to auto-quadratize cubic+ terms.
     Returns the best sample plus statistics on all samples.
@@ -283,7 +283,7 @@ def plot_energy_distribution(neal_energies, sa_energies, path):
     bin_edges = np.linspace(min(all_e), max(all_e), bins)
 
     ax.hist(neal_energies, bins=bin_edges, alpha=0.65,
-            label=f'D-Wave Neal  (n={len(neal_energies)})',
+            label=f'neal  (n={len(neal_energies)})',
             color='steelblue', edgecolor='black', linewidth=0.5)
     ax.hist(sa_energies, bins=bin_edges, alpha=0.65,
             label=f'Classical SA  (n={len(sa_energies)})',
@@ -308,7 +308,7 @@ def plot_runtime_comparison(neal_runtime, sa_runtime, neal_reads,
     """Bar chart of runtimes."""
     fig, ax = plt.subplots(figsize=(8, 5))
     bars = ax.bar(
-        ['D-Wave Neal', 'Classical SA'],
+        ['neal', 'Classical SA'],
         [neal_runtime, sa_runtime],
         color=['steelblue', 'darkorange'],
         alpha=0.85, edgecolor='black', linewidth=1,
@@ -406,7 +406,7 @@ def plot_metrics_table(rows, path):
 
 def main():
     print("=" * 70)
-    print("  Task 3 — D-Wave Neal vs Classical SA Benchmark")
+    print("  Task 3 — neal vs Classical SA Benchmark")
     print("=" * 70)
 
     # ---- Build the SAME HUBO from Task 2 ----
@@ -435,9 +435,9 @@ def main():
     summary = grid.term_summary(hubo)
     print(f"  Term order distribution: {summary}")
 
-    # ---- Solver 1: D-Wave Neal ----
+    # ---- Solver 1: neal ----
     print(f"\n{'─' * 70}")
-    print("Solver 1 — D-Wave Neal")
+    print("Solver 1 — neal")
     print(f"{'─' * 70}")
     NEAL_READS = 50
     NEAL_SWEEPS = 5000   # was 1000 — increased for better convergence with stronger weights
@@ -521,7 +521,7 @@ def main():
     # For SA, we trust the trajectory-level construction (always feasible)
     sa_feasibility_rate = 1.0   # by construction
 
-    print(f"  D-Wave Neal : {neal_feasibility_rate * 100:.1f}% "
+    print(f"  neal : {neal_feasibility_rate * 100:.1f}% "
           f"({neal_feasible_count}/{NEAL_READS} reads feasible)")
     print(f"  Classical SA: {sa_feasibility_rate * 100:.1f}% "
           f"(by construction — trajectory-level moves preserve feasibility)")
@@ -545,13 +545,13 @@ def main():
 
     plot_trajectory(scenario, neal_result['best_bits'], grid,
                     os.path.join(OUT_DIR, 'neal_trajectory.png'),
-                    f"D-Wave Neal — Best Trajectory  "
+                    f"neal — Best Trajectory  "
                     f"(energy = {neal_result['best_energy']:.1f})")
     print(f"  Saved: neal_trajectory.png")
 
     # Metrics table
     table_rows = [
-        ['Metric', 'D-Wave Neal', 'Classical SA'],
+        ['Metric', 'neal', 'Classical SA'],
         ['Best energy', f"{neal_result['best_energy']:.2f}",
          f"{sa_result['best_energy']:.2f}"],
         ['Mean energy', f"{neal_result['mean_energy']:.2f}",
@@ -623,14 +623,14 @@ def main():
 
     # Markdown report
     with open(os.path.join(OUT_DIR, 'benchmark_report.md'), 'w') as f:
-        f.write("# Task 3 — D-Wave Neal vs Classical SA Benchmark\n\n")
+        f.write("# Task 3 — neal vs Classical SA Benchmark\n\n")
         f.write("## Problem\n\n")
         f.write(f"Grid-based HUBO from Task 2: "
                 f"{grid.num_vars} binary variables, {len(hubo)} terms ")
         f.write(f"({summary['cubic']} cubic — genuine HUBO).\n\n")
 
         f.write("## Solvers\n\n")
-        f.write("**D-Wave Neal** — D-Wave's open-source simulated-annealing ")
+        f.write("**neal** — open-source simulated-annealing ")
         f.write("library, the standard classical simulator of their quantum ")
         f.write("annealer. Uses `dimod.HigherOrderComposite` to auto-quadratize ")
         f.write("the cubic terms before passing to neal's quadratic sampler.\n\n")
@@ -639,7 +639,7 @@ def main():
         f.write("preserves one-hot feasibility by construction.\n\n")
 
         f.write("## Headline Results\n\n")
-        f.write("| Metric | D-Wave Neal | Classical SA |\n")
+        f.write("| Metric | neal | Classical SA |\n")
         f.write("|---|---|---|\n")
         f.write(f"| Best energy | {neal_result['best_energy']:.2f} | "
                 f"{sa_result['best_energy']:.2f} |\n")
@@ -666,7 +666,7 @@ def main():
         f.write("## Analysis\n\n")
         f.write("### Solution quality\n")
         if neal_result['best_energy'] < sa_result['best_energy']:
-            f.write("D-Wave neal found a slightly lower best energy ")
+            f.write("neal found a slightly lower best energy ")
             f.write(f"({neal_result['best_energy']:.2f} vs ")
             f.write(f"{sa_result['best_energy']:.2f}).\n\n")
         elif sa_result['best_energy'] < neal_result['best_energy']:
@@ -688,9 +688,9 @@ def main():
         f.write("which become soft penalties in the auto-quadratized form.\n\n")
 
         f.write("### Quantum-inspired comparison\n")
-        f.write("D-Wave neal is the classical simulator of the same algorithm ")
-        f.write("D-Wave's quantum hardware uses. Its bit-flip approach is what ")
-        f.write("a real D-Wave QPU would do. The classical SA in Task 2 was ")
+        f.write("neal is the classical simulator of the same algorithm ")
+        f.write("neal's hardware uses. Its bit-flip approach is what ")
+        f.write("a external sampler would do. The classical SA in Task 2 was ")
         f.write("tailored to this problem's structure, which is why it ")
         f.write("outperforms neal on per-sample quality. For larger problems ")
         f.write("or different cost structures, neal's general-purpose approach ")
@@ -703,12 +703,12 @@ def main():
         f.write("beat general-purpose ones on per-sample quality.\n")
         f.write("- General-purpose solvers like neal trade per-sample quality ")
         f.write("for breadth — they can run on ANY HUBO without custom design.\n")
-        f.write("- This same HUBO can later be submitted to a real D-Wave QPU ")
+        f.write("- This same HUBO can later be submitted to a external sampler ")
         f.write("without any code changes — just swap the sampler.\n\n")
 
         f.write("## Files\n\n")
         f.write("- `benchmark_results.json` — full numerical results\n")
-        f.write("- `neal_trajectory.png` — UAV path found by D-Wave neal\n")
+        f.write("- `neal_trajectory.png` — UAV path found by neal\n")
         f.write("- `energy_distribution.png` — histogram across all runs\n")
         f.write("- `runtime_comparison.png` — runtime bar chart\n")
         f.write("- `metrics_table.png` — comparison table figure\n")
@@ -718,7 +718,7 @@ def main():
     print(f"\n{'=' * 70}")
     print(f"  TASK 3 — FINAL SUMMARY")
     print(f"{'=' * 70}")
-    print(f"  D-Wave Neal best  : {neal_result['best_energy']:.2f}  "
+    print(f"  neal best  : {neal_result['best_energy']:.2f}  "
           f"({'feasible' if neal_feas['all_hard_satisfied'] else 'INFEASIBLE'})")
     print(f"  Classical SA best : {sa_result['best_energy']:.2f}  "
           f"({'feasible' if sa_feas['all_hard_satisfied'] else 'INFEASIBLE'})")

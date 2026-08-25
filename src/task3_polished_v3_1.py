@@ -344,7 +344,7 @@ def plot_total_energy(neal_samples, sa_samples, path):
     fig, ax = plt.subplots(figsize=(10, 5))
     bins = np.linspace(min(neal_e + sa_e), max(neal_e + sa_e), 30)
     ax.hist(neal_e, bins=bins, alpha=0.65, color="steelblue",
-            label=f"D-Wave Neal (n={len(neal_e)})", edgecolor="black")
+            label=f"neal (n={len(neal_e)})", edgecolor="black")
     ax.hist(sa_e, bins=bins, alpha=0.65, color="darkorange",
             label=f"Classical SA (n={len(sa_e)})", edgecolor="black")
     ax.axvline(min(neal_e), color="steelblue", linestyle="--",
@@ -404,7 +404,7 @@ def plot_split_energy(neal_samples, sa_samples, path):
 
 def plot_runtime(neal_rt, sa_rt, neal_n, sa_n, path):
     fig, ax = plt.subplots(figsize=(8, 5))
-    bars = ax.bar(["D-Wave Neal", "Classical SA"],
+    bars = ax.bar(["neal", "Classical SA"],
                   [neal_rt, sa_rt],
                   color=["steelblue", "darkorange"],
                   alpha=0.85, edgecolor="black", linewidth=1)
@@ -525,9 +525,9 @@ def main():
     print(f"\nHUBO: {grid.num_vars} variables, {len(hubo)} terms")
     print(f"Hardened weights: λ_uniq=λ_start=λ_move=1000")
 
-    # ---- D-Wave Neal ----
+    # ---- neal ----
     print(f"\n{'─' * 70}")
-    print("D-Wave Neal — 50 reads with proper feasibility checking")
+    print("neal — 50 reads with proper feasibility checking")
     print(f"{'─' * 70}")
     neal_result = solve_with_neal_proper(hubo, grid.num_vars,
                                           scenario, grid,
@@ -612,7 +612,7 @@ def main():
     feas_label = ("FEASIBLE ✓" if neal_best_feasible["feasible"]
                   else "INFEASIBLE ✗")
     plot_trajectory(scenario, neal_best_feasible["bits"], grid,
-                     f"D-Wave Neal — Best Feasible Trajectory ({feas_label})\n"
+                     f"neal — Best Feasible Trajectory ({feas_label})\n"
                      f"energy={neal_best_feasible['total_energy']:.0f}, "
                      f"soft={neal_best_feasible['soft_cost']:.0f}",
                      os.path.join(OUT_DIR, "neal_trajectory.png"))
@@ -631,7 +631,7 @@ def main():
 
     # Metrics table
     table_rows = [
-        ["Metric", "D-Wave Neal", "Classical SA (500 sweeps)"],
+        ["Metric", "neal", "Classical SA (500 sweeps)"],
         ["Best total energy",
          f"{neal_samples[0]['total_energy']:.2f}",
          f"{sa_samples[0]['total_energy']:.2f}"],
@@ -758,7 +758,7 @@ def main():
     print(f"\n{'=' * 70}")
     print(f"  TASK 3 v3.1 — FINAL RESULTS (SA at 500 sweeps)")
     print(f"{'=' * 70}")
-    print(f"  D-Wave Neal:")
+    print(f"  neal:")
     print(f"    Best total energy : {neal_samples[0]['total_energy']:.2f}")
     print(f"    Best soft cost    : {neal_samples[0]['soft_cost']:.2f}")
     print(f"    Feasibility       : {neal_feas_count*100/50:.1f}% ({neal_feas_count}/50)")
