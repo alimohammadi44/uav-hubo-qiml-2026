@@ -1,0 +1,165 @@
+\begin{thebibliography}{25}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Barbeau, Janabi-Sharifi, and Masnavi(2025)}]{barbeau2025tracking}
+Barbeau, M.; Janabi-Sharifi, F.; and Masnavi, H. 2025.
+\newblock A Quantum Annealing Approach to Target Tracking.
+\newblock In \emph{Proceedings of the IEEE International Conference on Robotics
+  and Automation (ICRA)}, 3022--3027.
+
+\bibitem[{Chen, Liu, and Shen(2016)}]{chen2016tracking}
+Chen, J.; Liu, T.; and Shen, S. 2016.
+\newblock Tracking a Moving Target in Cluttered Environments Using a Quadrotor.
+\newblock In \emph{Proceedings of the IEEE/RSJ International Conference on
+  Intelligent Robots and Systems (IROS)}, 446--453.
+
+\bibitem[{{D-Wave Systems Inc.}(2026{\natexlab{a}})}]{dimod}
+{D-Wave Systems Inc.} 2026{\natexlab{a}}.
+\newblock dimod: Binary Quadratic Model Library.
+\newblock Software package.
+
+\bibitem[{{D-Wave Systems Inc.}(2026{\natexlab{b}})}]{neal}
+{D-Wave Systems Inc.} 2026{\natexlab{b}}.
+\newblock neal: Simulated Annealing Sampler for Binary Quadratic Models.
+\newblock Software package.
+
+\bibitem[{Davies and Kalidindi(2024)}]{davies2024mission}
+Davies, E.~G.; and Kalidindi, P.~V. 2024.
+\newblock Quantum Algorithms for Drone Mission Planning.
+\newblock In \emph{Proceedings of SPIE Quantum Technologies for Defence and
+  Security}, volume 13202, 1320209.
+
+\bibitem[{Falanga et~al.(2018)Falanga, Foehn, Lu, and
+  Scaramuzza}]{falanga2018pampc}
+Falanga, D.; Foehn, P.; Lu, P.; and Scaramuzza, D. 2018.
+\newblock {PAMPC}: Perception-Aware Model Predictive Control for Quadrotors.
+\newblock In \emph{Proceedings of the IEEE/RSJ International Conference on
+  Intelligent Robots and Systems (IROS)}, 1--8.
+
+\bibitem[{Farhi, Goldstone, and Gutmann(2014)}]{farhi2014qaoa}
+Farhi, E.; Goldstone, J.; and Gutmann, S. 2014.
+\newblock A Quantum Approximate Optimization Algorithm.
+\newblock \emph{arXiv preprint arXiv:1411.4028}.
+
+\bibitem[{Gerlach et~al.(2025)Gerlach, Lee, Barbaresco, and
+  Piatkowski}]{gerlach2025hybrid}
+Gerlach, T.; Lee, L.~K.; Barbaresco, F.; and Piatkowski, N. 2025.
+\newblock Hybrid Quantum-Classical Multi-Agent Pathfinding.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}, volume 267 of \emph{Proceedings of Machine Learning Research},
+  19161--19171.
+
+\bibitem[{Glover, Kochenberger, and Du(2019)}]{glover2019qubo}
+Glover, F.; Kochenberger, G.; and Du, Y. 2019.
+\newblock Quantum Bridge Analytics I: A Tutorial on Formulating and Using
+  {QUBO} Models.
+\newblock \emph{4OR}, 17(4): 335--371.
+
+\bibitem[{Gonz{\'a}lez~Villasmil(2026)}]{gonzalez2026scalable}
+Gonz{\'a}lez~Villasmil, J. 2026.
+\newblock Scalable Multi-Robot Path Planning via Quadratic Unconstrained Binary
+  Optimization.
+\newblock \emph{arXiv preprint arXiv:2602.14799}.
+
+\bibitem[{Hart, Nilsson, and Raphael(1968)}]{hart1968formal}
+Hart, P.~E.; Nilsson, N.~J.; and Raphael, B. 1968.
+\newblock A Formal Basis for the Heuristic Determination of Minimum Cost Paths.
+\newblock \emph{IEEE Transactions on Systems Science and Cybernetics}, 4(2):
+  100--107.
+
+\bibitem[{Hausman et~al.(2016)Hausman, Kahn, Patil, M{\"u}ller, Goldberg,
+  Abbeel, and Sukhatme}]{hausman2016occlusion}
+Hausman, K.; Kahn, G.; Patil, S.; M{\"u}ller, J.; Goldberg, K.; Abbeel, P.; and
+  Sukhatme, G.~S. 2016.
+\newblock Occlusion-Aware Multi-Robot 3D Tracking.
+\newblock In \emph{Proceedings of the IEEE/RSJ International Conference on
+  Intelligent Robots and Systems (IROS)}, 1863--1870.
+
+\bibitem[{Hua et~al.(2024)Hua, Di~Lorenzo, Chinesta, and
+  Codognet}]{hua2024annealing}
+Hua, R.; Di~Lorenzo, D.; Chinesta, F.; and Codognet, P. 2024.
+\newblock Quantum Annealing Solutions for Drone Route Planning Problems.
+\newblock In \emph{Proceedings of the IEEE International Conference on Quantum
+  Computing and Engineering (QCE)}, 600--610.
+
+\bibitem[{Huang et~al.(2022)Huang, Li, Zhao, and Song}]{huang2022variational}
+Huang, Z.; Li, Q.; Zhao, J.; and Song, M. 2022.
+\newblock Variational Quantum Algorithm Applied to Collision Avoidance of
+  Unmanned Aerial Vehicles.
+\newblock \emph{Entropy}, 24(11): 1685.
+
+\bibitem[{Innan et~al.(2025)Innan, Kashif, Marchisio, Gan, Barbaresco, and
+  Shafique}]{innan2025quav}
+Innan, N.; Kashif, M.; Marchisio, A.; Gan, Y.-S.; Barbaresco, F.; and Shafique,
+  M. 2025.
+\newblock {QUAV}: Quantum-Assisted Path Planning and Optimization for {UAV}
+  Navigation with Obstacle Avoidance.
+\newblock In \emph{Proceedings of the IEEE International Conference on Quantum
+  Artificial Intelligence (QAI)}, 208--215.
+
+\bibitem[{LaValle(1998)}]{lavalle1998rrt}
+LaValle, S.~M. 1998.
+\newblock Rapidly-Exploring Random Trees: A New Tool for Path Planning.
+\newblock Technical Report 98-11, Department of Computer Science, Iowa State
+  University.
+
+\bibitem[{Masnavi et~al.(2022)Masnavi, Adajania, Kruusam{\"a}e, and
+  Singh}]{masnavi2022realtime}
+Masnavi, H.; Adajania, V.~K.; Kruusam{\"a}e, K.; and Singh, A.~K. 2022.
+\newblock Real-Time Multi-Convex Model Predictive Control for Occlusion-Free
+  Target Tracking with Quadrotors.
+\newblock \emph{IEEE Access}, 10: 29009--29031.
+
+\bibitem[{Osaba et~al.(2025)Osaba, Miranda-Rodriguez, Oikonomakis,
+  Petri{\v{c}}, Ruiz, Bock, and Kourtis}]{osaba2025q4dr}
+Osaba, E.; Miranda-Rodriguez, P.; Oikonomakis, A.; Petri{\v{c}}, M.; Ruiz, A.;
+  Bock, S.; and Kourtis, M.-A. 2025.
+\newblock Solving Drone Routing Problems with Quantum Computing: A Hybrid
+  Approach Combining Quantum Annealing and Gate-Based Paradigms.
+\newblock In \emph{Proceedings of the IEEE Congress on Evolutionary Computation
+  (CEC)}, 1--8.
+
+\bibitem[{Osaba, Villar-Rodriguez, and Oregi(2022)}]{osaba2022review}
+Osaba, E.; Villar-Rodriguez, E.; and Oregi, I. 2022.
+\newblock A Systematic Literature Review of Quantum Computing for Routing
+  Problems.
+\newblock \emph{IEEE Access}, 10: 55805--55817.
+
+\bibitem[{Penin, Robuffo~Giordano, and Chaumette(2018)}]{penin2018vision}
+Penin, B.; Robuffo~Giordano, P.; and Chaumette, F. 2018.
+\newblock Vision-Based Reactive Planning for Aggressive Target Tracking While
+  Avoiding Collisions and Occlusions.
+\newblock \emph{IEEE Robotics and Automation Letters}, 3(4): 3725--3732.
+
+\bibitem[{Perron and Furnon(2026)}]{perron2026ortools}
+Perron, L.; and Furnon, V. 2026.
+\newblock {OR-Tools}.
+\newblock Google, software package.
+
+\bibitem[{Qiu et~al.(2025)Qiu, Lin, Zhu, and Ren}]{qiu2025quantum}
+Qiu, G.; Lin, R.; Zhu, J.; and Ren, J. 2025.
+\newblock Quantum-Driven {UAV} Path Planning Using {QUBO} Model and Coherent
+  Ising Machines.
+\newblock In \emph{Proceedings of the 8th International Conference on Advanced
+  Algorithms and Control Engineering (ICAACE)}, 388--393.
+
+\bibitem[{Rosenberg(1975)}]{rosenberg1975reduction}
+Rosenberg, I.~G. 1975.
+\newblock Reduction of Bivalent Maximization to the Quadratic Case.
+\newblock \emph{Cahiers du Centre d'Etudes de Recherche Op{\'e}rationnelle},
+  17: 71--79.
+
+\bibitem[{Tarquini et~al.(2026)Tarquini, Dragoni, Vandelli, and
+  Tudisco}]{tarquini2026packing}
+Tarquini, S.; Dragoni, D.; Vandelli, M.; and Tudisco, F. 2026.
+\newblock Testing Quantum and Simulated Annealers on the Drone Delivery Packing
+  Problem.
+\newblock \emph{Quantum Machine Intelligence}, 8: 14.
+
+\bibitem[{Wang et~al.(2022)Wang, Wu, Chen, and Ju}]{wang2022multi}
+Wang, J.; Wu, Y.-X.; Chen, Y.-Q.; and Ju, S. 2022.
+\newblock Multi-UAVs Collaborative Tracking of Moving Target with Maximized
+  Visibility in Urban Environment.
+\newblock \emph{Journal of the Franklin Institute}, 359(11): 5512--5532.
+
+\end{thebibliography}

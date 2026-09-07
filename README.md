@@ -1,13 +1,17 @@
 # UAV HUBO/QUBO Feasibility-Aware Benchmark for QIML 2026
 
-This repository contains the code, figures, result table, and paper draft for a feasibility-aware HUBO/QUBO benchmark for UAV obstacle-avoidance and visibility-aware grid planning.
+This repository contains the code, figures, result table, and submitted paper for a feasibility-aware HUBO/QUBO benchmark for UAV obstacle-avoidance and visibility-aware grid planning.
 
 The paper does **not** claim quantum speedup. Its purpose is to compare decoded-path feasibility, native HUBO energy, and solver behavior across classical, quantum-inspired, and quantum-compatible workflows.
+
+## Submitted paper
+
+The QIML 2026 submission dated September 7, 2026 is available at [`paper/QIML_2026_UAV_HUBO_Submission.pdf`](paper/QIML_2026_UAV_HUBO_Submission.pdf). The complete buildable LaTeX source is stored in `paper/`.
 
 ## Contents
 
 ```text
-paper/      LaTeX source and compiled PDF
+paper/      Final LaTeX source and submitted PDF
 figures/    Figures used in the paper
 src/        Reproducible Python code for the benchmark
 results/    Main comparison table CSV
@@ -57,7 +61,7 @@ results/unified_comparison_m2max.csv
 ```
 
 Send these three files to the paper maintainer before replacing the runtime
-column in Table II. The existing paper PDF is intentionally not changed by the
+column in Table II. The submitted paper PDF is intentionally not changed by the
 benchmark command.
 
 ## Notes for reviewers/authors
