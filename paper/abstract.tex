@@ -1,0 +1,70 @@
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage{aaai24} % DO NOT CHANGE THIS
+\usepackage{times} % DO NOT CHANGE THIS
+\usepackage{helvet} % DO NOT CHANGE THIS
+\usepackage{courier} % DO NOT CHANGE THIS
+\usepackage[hyphens]{url} % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm} % DO NOT CHANGE THIS
+\usepackage{natbib} % DO NOT CHANGE THIS AND DO NOT ADD OPTIONS
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD OPTIONS
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{array}
+\frenchspacing % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+\pdfinfo{/TemplateVersion (2024.1)}
+\setcounter{secnumdepth}{0}
+\nocopyright
+
+% Keep the AAAI typography and title block while using a single-column
+% body for the stand-alone abstract requested by the submission system.
+\makeatletter
+\renewcommand{\maketitle}{%
+  \par
+  \begingroup
+    \def\thefootnote{\fnsymbol{footnote}}%
+    \@maketitle
+    \@thanks
+  \endgroup
+  \setcounter{footnote}{0}%
+  \let\maketitle\relax
+  \let\@maketitle\relax
+  \gdef\@thanks{}%
+  \gdef\@author{}%
+  \gdef\@title{}%
+  \let\thanks\relax
+}
+\makeatother
+
+\title{A Feasibility-Aware HUBO/QUBO Benchmark for UAV Obstacle-Avoidance with Visibility Cost}
+
+\author{
+Muhammad Ibrahim\textsuperscript{\rm 1},
+Ali Mohammadi\textsuperscript{\rm 1},
+Farrokh Janabi-Sharifi\textsuperscript{\rm 1},\\
+Ulrike Stege\textsuperscript{\rm 2},
+Demetros Tareke\textsuperscript{\rm 1},
+Prashanti Priya Angara\textsuperscript{\rm 2}
+}
+
+\affiliations{
+\textsuperscript{\rm 1}Toronto Metropolitan University, Toronto, Canada\\
+\textsuperscript{\rm 2}University of Victoria, Victoria, Canada\\
+mibrahimibm05@gmail.com, alimohammadi44@torontomu.ca, fsharifi@torontomu.ca,\\
+ustege@uvic.ca, demetros.tareke@torontomu.ca, pangara@uvic.ca
+}
+
+\begin{document}
+\onecolumn
+\maketitle
+
+\begin{abstract}
+Quantum-assisted UAV path planning has recently been studied using QAOA-style obstacle-avoidance formulations, but a low-energy binary sample is not necessarily a valid UAV trajectory. This paper presents a feasibility-aware benchmark for a discrete $8\times8$, $L=20$ UAV grid-planning problem with obstacle avoidance, a line-of-sight visibility cost, and a higher-order temporal buffer-risk term. The horizon $L$ denotes discrete planning layers, not physical seconds. The model uses binary variables $x_{t,v}$ indicating whether the UAV occupies cell $v$ at time layer $t$ and forms a HUBO objective with one-hot, start, motion, obstacle, visibility, terminal-goal, and sustained near-obstacle proximity terms. The instance has 1,280 original binary variables and 118,344 polynomial terms, including 4,392 cubic monomials. We compare A*, RRT-best, a QUAV-style QAOA candidate-path selector, native trajectory-level simulated annealing (SA), the classical \texttt{neal} BQM sampler after HUBO-to-QUBO reduction, and an exact CP-SAT baseline that minimizes the native HUBO soft objective over hard-feasible paths. The CP-SAT solver returns OPTIMAL and certifies that the best observed SA path is globally optimal for the enforced feasible-path objective, with implementation HUBO energy $-20752.43$, soft cost 247.57, path length 14, six turns, and 85\% visibility. The results do not claim quantum speedup; they show that feasibility-aware decoding, exact baselines, and the effects of quadratization are essential for interpreting quantum-compatible UAV planning results.
+\end{abstract}
+
+\noindent\textbf{Keywords:} HUBO, QUBO, feasibility-aware benchmarking, UAV path planning, obstacle avoidance, visibility-aware planning, CP-SAT, QAOA, quantum-compatible optimization.
+
+\end{document}
