@@ -1,9 +1,8 @@
-# QIML 2026 submission package
+# QIML 2026 camera-ready package
 
-This package contains an author-visible AAAI 2024-format manuscript for the
-Second AAAI Symposium on Quantum Information & Machine Learning (QIML 2026).
-The symposium specifies single-blind review, so the author names and
-affiliations remain visible.
+This directory contains the author-visible camera-ready manuscript for the Second AAAI Symposium on Quantum Information & Machine Learning (QIML 2026). It uses the official AAAI-27 LaTeX style and bibliography files (`aaai2027.sty` and `aaai2027.bst`).
+
+The paper presents an evaluation protocol demonstrated on one fully specified instance; it does not claim a general instance-suite benchmark or quantum speedup.
 
 ## Build
 
@@ -16,27 +15,22 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-The supplied `aaai24.sty` and `aaai24.bst` files are unmodified copies of the
-AAAI 2024 author-kit files linked by the symposium.
+A current TeX Live or MiKTeX installation with the `newtx` and TeX Gyre font packages is required by the AAAI-27 style.
 
-Citations use the AAAI author--year style (for example,
-`(Qiu et al. 2025)`), not numbered citations such as `[12]`.
+Citations use the AAAI author--year style, for example `(Qiu et al. 2025)`. The camera-ready source does not use `\nocopyright`, and all fonts in the supplied PDF are embedded Type 1 fonts.
 
-The two PNG figure files are the original supplied color images and have not
-been edited or converted.
+## Files
 
-## Review versus camera-ready
+- `main.tex`: six-page camera-ready manuscript
+- `QIML_2026_UAV_HUBO_Submission.pdf`: compiled camera-ready paper
+- `abstract.tex` and `QIML_2026_UAV_HUBO_Abstract.pdf`: stand-alone, single-column abstract for convenience; not the CRC manuscript
+- `references.bib`: bibliography database
+- `figures/`: paper figures
+- `aaai2027.sty` and `aaai2027.bst`: unmodified official AAAI-27 files
 
-`main.tex` uses the normal author-visible AAAI style and calls `\nocopyright`
-for the review manuscript. For a camera-ready version, follow the instructions
-sent by AAAI Press, remove `\nocopyright`, add any requested copyright-year or
-rights information, and complete the required publication form.
+## Final author checks
 
-## Final checks for the authors
-
-- Confirm the author order, spelling, affiliations, and all email addresses.
-- Confirm every numerical result, path, caption, and bibliography entry against
-  the experiment logs and cited sources.
-- Confirm that the repository URL is public before submission.
-- Upload the generated PDF as a Full Paper; the compiled manuscript is six
-  US-letter pages.
+- Confirm author order, spelling, affiliations, and email addresses.
+- Confirm every numerical result and bibliography entry against the experiment logs and cited sources.
+- Upload the CRC only through the AAAI proceedings platform specified in the acceptance email.
+- Follow any additional CRC invitation instructions, including any reproducibility-checklist requirement.

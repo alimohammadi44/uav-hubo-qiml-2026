@@ -1,34 +1,32 @@
-# UAV HUBO/QUBO Feasibility-Aware Benchmark for QIML 2026
+# Feasibility-Aware HUBO/QUBO UAV Evaluation for QIML 2026
 
-This repository contains the code, figures, result table, and submitted paper for a feasibility-aware HUBO/QUBO benchmark for UAV obstacle-avoidance and visibility-aware grid planning.
+This repository contains the code, figures, result table, and paper for a feasibility-aware HUBO/QUBO evaluation protocol for UAV obstacle-avoidance and visibility-aware grid planning. The protocol is demonstrated on one fully specified `8 x 8`, `L = 20` instance; the repository does not claim a general instance-suite benchmark or quantum speedup.
 
-The paper does **not** claim quantum speedup. Its purpose is to compare decoded-path feasibility, native HUBO energy, and solver behavior across classical, quantum-inspired, and quantum-compatible workflows.
+The evaluation compares decoded-path feasibility, native HUBO energy, and solver behavior across classical, quantum-inspired, and quantum-compatible workflows.
 
-## Submitted paper
+## Camera-ready paper
 
-The QIML 2026 submission dated September 7, 2026 is available at [`paper/QIML_2026_UAV_HUBO_Submission.pdf`](paper/QIML_2026_UAV_HUBO_Submission.pdf). The complete buildable LaTeX source is stored in `paper/`.
+The accepted QIML 2026 paper is available at [`paper/QIML_2026_UAV_HUBO_Submission.pdf`](paper/QIML_2026_UAV_HUBO_Submission.pdf). The buildable AAAI-27 LaTeX source is stored in `paper/`.
 
 ## Contents
 
 ```text
-paper/      Final LaTeX source and submitted PDF
+paper/      AAAI-27 camera-ready source, paper PDF, and stand-alone abstract
 figures/    Figures used in the paper
-src/        Reproducible Python code for the benchmark
+src/        Reproducible Python implementation
 results/    Main comparison table CSV
 ```
 
-## Main benchmark
+## Demonstration instance
 
-The main benchmark is an `8 x 8` grid with horizon `L = 20`, obstacle cells, visibility cost, and a cubic temporal buffer-risk term.
-
-The compared methods are:
+The paper evaluates one `8 x 8` grid with horizon `L = 20`, obstacle cells, visibility cost, and a cubic temporal buffer-risk term. The compared methods are:
 
 - A* baseline
 - RRT-best baseline
 - QUAV-style QAOA candidate-path selector
 - trajectory-level simulated annealing over native HUBO energy
 - HUBO-to-QUBO/BQM sampling with `neal`
-- exact CP-SAT/MILP baseline
+- exact CP-SAT reference
 
 ## Recommended setup
 
@@ -38,19 +36,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Apple M2 Max runtime benchmark
+## Apple M2 Max timing workflow
 
-Run the complete publication-timing workflow on the Apple M2 Max from the
-repository root:
+Run the publication-timing workflow from the repository root:
 
 ```bash
 ./run_m2max_benchmark.command
 ```
 
-The first run creates an isolated `.venv-m2max` environment and installs the
-requirements. The complete workflow may take 30--65 minutes because it runs
-the full 50-run trajectory-SA experiment. It records solver-level wall-clock
-times while excluding plotting and file-serialization time.
+The first run creates an isolated `.venv-m2max` environment and installs the requirements. The complete workflow may take 30--65 minutes because it runs the full 50-run trajectory-SA experiment. It records solver-level wall-clock times while excluding plotting and file-serialization time.
 
 The command produces:
 
@@ -60,13 +54,10 @@ results/m2max_runtime_benchmark.csv
 results/unified_comparison_m2max.csv
 ```
 
-Send these three files to the paper maintainer before replacing the runtime
-column in Table II. The submitted paper PDF is intentionally not changed by the
-benchmark command.
+## Notes for reviewers and authors
 
-## Notes for reviewers/authors
-
-- `neal` is a classical simulated annealing sampler, not hardware.
-- The QUAV-style QAOA row is a candidate-path selector and is not an official QUAV implementation.
-- CP-SAT/MILP are included as exact correctness anchors.
-- Feasibility, goal arrival, and full-task success are intentionally reported separately.
+- `neal` is a classical simulated-annealing sampler, not quantum hardware.
+- The QUAV-style QAOA row is a candidate-path selector, not an official QUAV implementation.
+- The paper uses CP-SAT as its exact correctness anchor.
+- Feasibility, goal arrival, and full-task success are reported separately.
+- Multi-instance evaluation is future work.
