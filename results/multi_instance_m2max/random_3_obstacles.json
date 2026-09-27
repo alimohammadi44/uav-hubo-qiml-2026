@@ -25,8 +25,19 @@
         4
       ]
     ],
+    "buffer_radius": 1,
     "shortest_path_distance": 14,
-    "buffer_cell_count": 20
+    "buffer_cell_count": 20,
+    "weights": {
+      "lambda_uniq": 1000.0,
+      "lambda_start": 1000.0,
+      "lambda_move": 1000.0,
+      "lambda_obs": 1000.0,
+      "lambda_occ": 10.0,
+      "lambda_prox": 5.0,
+      "lambda_goal": 8.0,
+      "lambda_terminal": 50.0
+    }
   },
   "hubo": {
     "original_binary_variables": 1280,
@@ -37,8 +48,22 @@
     "higher": 0
   },
   "seeds_and_budgets": {
-    "placement_seed": 20260926,
     "solver_seed": 42,
+    "rrt_first_seed": 200,
+    "rrt_trials": 40,
+    "rrt_max_iterations": 1200,
+    "rrt_goal_bias": 0.12,
+    "candidate_random_astar": 80,
+    "candidate_rrt": 80,
+    "qaoa_max_candidates": 12,
+    "qaoa_layers": 1,
+    "qaoa_steps": 60,
+    "cpsat_time_limit_s": 300.0,
+    "cpsat_workers": 8,
+    "neal_reads": 50,
+    "neal_sweeps": 3000,
+    "sa_runs": 50,
+    "sa_sweeps": 500,
     "rrt_seeds": [
       200,
       201,
@@ -80,11 +105,7 @@
       237,
       238,
       239
-    ],
-    "neal_reads": 50,
-    "neal_sweeps": 3000,
-    "sa_runs": 50,
-    "sa_sweeps": 500
+    ]
   },
   "methods": {
     "A*": {
@@ -96,8 +117,8 @@
       "buffer_steps": 0,
       "visibility_rate": 0.95,
       "hubo_energy": -20790.939363922567,
-      "runtime_total_s": 0.0018340419992455281,
-      "runtime_per_run_s": 0.0018340419992455281
+      "runtime_total_s": 0.0018636250024428591,
+      "runtime_per_run_s": 0.0018636250024428591
     },
     "RRT-best": {
       "feasible": true,
@@ -108,8 +129,8 @@
       "buffer_steps": 0,
       "visibility_rate": 0.95,
       "hubo_energy": -20811.024572553128,
-      "runtime_total_s": 0.01982145899819443,
-      "runtime_per_run_s": 0.0004955364749548608
+      "runtime_total_s": 0.018496250006137416,
+      "runtime_per_run_s": 0.0004624062501534354
     },
     "QUAV-style QAOA": {
       "feasible": true,
@@ -120,8 +141,8 @@
       "buffer_steps": 0,
       "visibility_rate": 0.95,
       "hubo_energy": -20790.939363922567,
-      "runtime_total_s": 5.062666915997397,
-      "runtime_per_run_s": 5.062666915997397
+      "runtime_total_s": 4.942195083000115,
+      "runtime_per_run_s": 4.942195083000115
     },
     "CP-SAT exact": {
       "feasible": true,
@@ -133,8 +154,8 @@
       "visibility_rate": 0.95,
       "hubo_energy": -20827.49796742382,
       "soft_cost": 172.50203257617977,
-      "runtime_total_s": 0.7709804170008283,
-      "runtime_per_run_s": 0.7709804170008283,
+      "runtime_total_s": 0.7256220419949386,
+      "runtime_per_run_s": 0.7256220419949386,
       "status": "OPTIMAL",
       "is_optimal": true
     },
@@ -162,8 +183,8 @@
       "visibility_rate": 0.95,
       "hubo_energy": -20827.497967423864,
       "soft_cost": 172.50203257617716,
-      "runtime_total_s": 1054.8850080409975,
-      "runtime_per_run_s": 21.09770016081995,
+      "runtime_total_s": 1650.4301172499981,
+      "runtime_per_run_s": 33.008602344999964,
       "representative_selection": "best_full_success"
     },
     "HUBO->QUBO/neal": {
@@ -190,8 +211,8 @@
       "visibility_rate": 0.85,
       "hubo_energy": -20615.126223515803,
       "soft_cost": 384.8737764841945,
-      "runtime_total_s": 5.849526832997071,
-      "runtime_per_run_s": 0.11699053665994143,
+      "runtime_total_s": 6.569720667001093,
+      "runtime_per_run_s": 0.13139441334002186,
       "representative_selection": "best_feasible"
     }
   },
@@ -4436,12 +4457,12 @@
       "status": "OPTIMAL",
       "success": true,
       "is_optimal": true,
-      "runtime_s": 0.7709804170008283,
+      "runtime_s": 0.7256220419949386,
       "objective_soft_cost_scaled": 172503.0,
       "objective_soft_cost": 172.503,
       "best_objective_bound": 172.503,
       "num_conflicts": 0,
-      "num_branches": 250,
+      "num_branches": 248,
       "num_proximity_aux_variables": 3744,
       "native_hubo_energy": -20827.49796742382,
       "metrics": {
@@ -4542,8 +4563,8 @@
     },
     "neal": {
       "sample_count": 50,
-      "runtime_total_s": 5.849526832997071,
-      "runtime_per_sample_s": 0.11699053665994143,
+      "runtime_total_s": 6.569720667001093,
+      "runtime_per_sample_s": 0.13139441334002186,
       "counts": {
         "feasible": 17,
         "goal": 0,
@@ -4668,8 +4689,8 @@
     },
     "trajectory_sa": {
       "sample_count": 50,
-      "runtime_total_s": 1054.8850080409975,
-      "runtime_per_sample_s": 21.09770016081995,
+      "runtime_total_s": 1650.4301172499981,
+      "runtime_per_sample_s": 33.008602344999964,
       "counts": {
         "feasible": 50,
         "goal": 33,

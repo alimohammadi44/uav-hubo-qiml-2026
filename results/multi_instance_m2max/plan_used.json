@@ -4,8 +4,14 @@
   "scenario_defaults": {
     "grid_size": 8,
     "horizon": 20,
-    "start": [0, 0],
-    "target": [7, 7],
+    "start": [
+      0,
+      0
+    ],
+    "target": [
+      7,
+      7
+    ],
     "buffer_radius": 1,
     "require_reachable": true
   },
@@ -29,13 +35,65 @@
   },
   "runs": [
     {
+      "name": "primary_6_obstacles",
+      "obstacles": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "notes": "Primary instance reported in Table 2 of the camera-ready paper."
+    },
+    {
       "name": "random_2_obstacles",
-      "obstacles": [[2, 2], [6, 4]],
+      "obstacles": [
+        [
+          2,
+          2
+        ],
+        [
+          6,
+          4
+        ]
+      ],
       "notes": "Fixed realization from placement seed 20260926."
     },
     {
       "name": "random_3_obstacles",
-      "obstacles": [[2, 2], [4, 3], [6, 4]],
+      "obstacles": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
       "notes": "Nested case: adds [4, 3] to the two-obstacle map."
     }
   ]

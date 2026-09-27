@@ -21,8 +21,19 @@
         4
       ]
     ],
+    "buffer_radius": 1,
     "shortest_path_distance": 14,
-    "buffer_cell_count": 16
+    "buffer_cell_count": 16,
+    "weights": {
+      "lambda_uniq": 1000.0,
+      "lambda_start": 1000.0,
+      "lambda_move": 1000.0,
+      "lambda_obs": 1000.0,
+      "lambda_occ": 10.0,
+      "lambda_prox": 5.0,
+      "lambda_goal": 8.0,
+      "lambda_terminal": 50.0
+    }
   },
   "hubo": {
     "original_binary_variables": 1280,
@@ -33,8 +44,22 @@
     "higher": 0
   },
   "seeds_and_budgets": {
-    "placement_seed": 20260926,
     "solver_seed": 42,
+    "rrt_first_seed": 200,
+    "rrt_trials": 40,
+    "rrt_max_iterations": 1200,
+    "rrt_goal_bias": 0.12,
+    "candidate_random_astar": 80,
+    "candidate_rrt": 80,
+    "qaoa_max_candidates": 12,
+    "qaoa_layers": 1,
+    "qaoa_steps": 60,
+    "cpsat_time_limit_s": 300.0,
+    "cpsat_workers": 8,
+    "neal_reads": 50,
+    "neal_sweeps": 3000,
+    "sa_runs": 50,
+    "sa_sweeps": 500,
     "rrt_seeds": [
       200,
       201,
@@ -76,11 +101,7 @@
       237,
       238,
       239
-    ],
-    "neal_reads": 50,
-    "neal_sweeps": 3000,
-    "sa_runs": 50,
-    "sa_sweeps": 500
+    ]
   },
   "methods": {
     "A*": {
@@ -92,8 +113,8 @@
       "buffer_steps": 0,
       "visibility_rate": 0.95,
       "hubo_energy": -20790.939363922567,
-      "runtime_total_s": 0.001953917002538219,
-      "runtime_per_run_s": 0.001953917002538219
+      "runtime_total_s": 0.0017767080062185414,
+      "runtime_per_run_s": 0.0017767080062185414
     },
     "RRT-best": {
       "feasible": true,
@@ -104,8 +125,8 @@
       "buffer_steps": 2,
       "visibility_rate": 0.95,
       "hubo_energy": -20821.14306081094,
-      "runtime_total_s": 0.016086666997580323,
-      "runtime_per_run_s": 0.00040216667493950806
+      "runtime_total_s": 0.01587758400273742,
+      "runtime_per_run_s": 0.00039693960006843555
     },
     "QUAV-style QAOA": {
       "feasible": true,
@@ -116,8 +137,8 @@
       "buffer_steps": 0,
       "visibility_rate": 0.95,
       "hubo_energy": -20811.024572553128,
-      "runtime_total_s": 12.539477875001467,
-      "runtime_per_run_s": 12.539477875001467
+      "runtime_total_s": 4.117096291993221,
+      "runtime_per_run_s": 4.117096291993221
     },
     "CP-SAT exact": {
       "feasible": true,
@@ -129,8 +150,8 @@
       "visibility_rate": 0.95,
       "hubo_energy": -20827.49796742382,
       "soft_cost": 172.50203257617977,
-      "runtime_total_s": 0.5641141249980137,
-      "runtime_per_run_s": 0.5641141249980137,
+      "runtime_total_s": 0.5583613749986398,
+      "runtime_per_run_s": 0.5583613749986398,
       "status": "OPTIMAL",
       "is_optimal": true
     },
@@ -158,8 +179,8 @@
       "visibility_rate": 0.95,
       "hubo_energy": -20827.497967423882,
       "soft_cost": 172.50203257617716,
-      "runtime_total_s": 1011.6306897920003,
-      "runtime_per_run_s": 20.232613795840006,
+      "runtime_total_s": 984.4679720829954,
+      "runtime_per_run_s": 19.689359441659906,
       "representative_selection": "best_full_success"
     },
     "HUBO->QUBO/neal": {
@@ -186,8 +207,8 @@
       "visibility_rate": 0.8,
       "hubo_energy": -20495.618239800748,
       "soft_cost": 504.38176019925476,
-      "runtime_total_s": 5.53285379099907,
-      "runtime_per_run_s": 0.1106570758199814,
+      "runtime_total_s": 5.510803999997734,
+      "runtime_per_run_s": 0.11021607999995467,
       "representative_selection": "best_feasible"
     }
   },
@@ -4409,12 +4430,12 @@
       "status": "OPTIMAL",
       "success": true,
       "is_optimal": true,
-      "runtime_s": 0.5641141249980137,
+      "runtime_s": 0.5583613749986398,
       "objective_soft_cost_scaled": 172503.0,
       "objective_soft_cost": 172.503,
       "best_objective_bound": 172.503,
       "num_conflicts": 0,
-      "num_branches": 220,
+      "num_branches": 214,
       "num_proximity_aux_variables": 2592,
       "native_hubo_energy": -20827.49796742382,
       "metrics": {
@@ -4467,16 +4488,16 @@
             4
           ],
           [
-            5,
-            4
+            4,
+            5
           ],
           [
             5,
             5
           ],
           [
-            5,
-            6
+            6,
+            5
           ],
           [
             6,
@@ -4515,8 +4536,8 @@
     },
     "neal": {
       "sample_count": 50,
-      "runtime_total_s": 5.53285379099907,
-      "runtime_per_sample_s": 0.1106570758199814,
+      "runtime_total_s": 5.510803999997734,
+      "runtime_per_sample_s": 0.11021607999995467,
       "counts": {
         "feasible": 13,
         "goal": 0,
@@ -4641,8 +4662,8 @@
     },
     "trajectory_sa": {
       "sample_count": 50,
-      "runtime_total_s": 1011.6306897920003,
-      "runtime_per_sample_s": 20.232613795840006,
+      "runtime_total_s": 984.4679720829954,
+      "runtime_per_sample_s": 19.689359441659906,
       "counts": {
         "feasible": 50,
         "goal": 42,

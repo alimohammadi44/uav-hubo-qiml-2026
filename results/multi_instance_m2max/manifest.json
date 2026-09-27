@@ -1,8 +1,25 @@
 {
-  "schema_version": 1,
-  "generated_at_utc": "2026-09-26T22:57:27.824566+00:00",
-  "started_at_utc": "2026-09-26T22:21:52.777318+00:00",
-  "git_revision": "2d886b06f9710e1bc317b59139858f999cc354ba",
+  "schema_version": 2,
+  "experiment_name": "multi_instance_m2max",
+  "plan_path": "configs/multi_instance_plan.json",
+  "command_argv": [
+    "src/run_multi_instance_m2max.py",
+    "--plan",
+    "configs/multi_instance_plan.json"
+  ],
+  "generated_at_utc": "2026-09-27T11:29:33.394169+00:00",
+  "started_at_utc": "2026-09-27T04:50:56.463750+00:00",
+  "git_revision": "061d246f3abc6129f078f82d1467d55af72fbded",
+  "source_clean_at_start": true,
+  "python_version": "3.14.7",
+  "package_versions": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "dimod": "0.12.22",
+    "dwave-neal": "0.6.0",
+    "ortools": "9.15.6755",
+    "matplotlib": "3.11.2"
+  },
   "hardware": {
     "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
     "machine": "arm64",
@@ -12,11 +29,43 @@
     "physical_cpu_cores": 12,
     "logical_cpu_cores": 12
   },
-  "placement": {
-    "seed": 20260926,
-    "generator": "Python random.Random; nested interior non-touching placements with endpoint, diversity, diagonal, and reachability checks"
-  },
+  "required_chip": "Apple M2 Max",
+  "selected_runs": [
+    "primary_6_obstacles",
+    "random_2_obstacles",
+    "random_3_obstacles"
+  ],
   "cases": [
+    {
+      "case": "primary_6_obstacles",
+      "obstacles": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "output": "primary_6_obstacles.json"
+    },
     {
       "case": "random_2_obstacles",
       "obstacles": [
