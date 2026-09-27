@@ -170,12 +170,13 @@ HUBO-SA & 100.0\% & 16.0\% & 16.0\% & 14 & 6 & 4 & 85.0\% & -20752.43 & 24.15s\\
 QUBO/\texttt{neal} & 12.0\% & 8.0\% & 0.0\% & 18 & 12 & 2 & 20.0\% & -20060.47 & 0.123s\\
 \bottomrule
 \end{tabular*}
-\caption{Unified same-platform comparison. Yes/no is a single output; percentages use 50 runs/reads. SA reports its best full-success path; \texttt{neal} reports its best-energy feasible non-goal sample. Time/run is mean wall-clock time; the \texttt{neal} value is amortized over one 50-read batch.}
+\caption{Unified same-platform comparison. Yes/no is a single output; percentages use 50 runs/reads. SA reports its best full-success path; \texttt{neal} reports its best-energy feasible non-goal sample. Time/run is mean wall-clock time; the \texttt{neal} value is amortized over one 50-read batch. Only \texttt{neal} samples the full penalized QUBO; the other methods pre-enforce feasibility, so solver difficulty is not like-for-like.}
 \label{tab:unified}
 \end{table*}
 
 \section{Solvers and Implementation}
 All methods were executed on the same Apple M2 Max platform with 32 GB unified memory.
+Fixed stochastic seeds are recorded in the public implementation; the rates are descriptive for this single instance.
 
 \subsection{A* and RRT Baselines}
 A* searches directly on the grid with obstacle avoidance and a heuristic path cost. RRT-best is a randomized grid planner used as a sampling-style reference. These methods return explicit paths and are checked with the same feasibility evaluator. The RRT-best runtime includes 40 fixed-seed trials and best-cost selection.
@@ -203,7 +204,7 @@ Fig.~\ref{fig:decoded_paths} shows the actual decoded paths returned by each met
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.98\textwidth,trim=0 0 0 60,clip]{fig_decoded_paths_all_methods.png}
+\includegraphics[width=0.98\textwidth]{fig_decoded_paths_all_methods.png}
 \caption{Decoded paths on the common $8\times8$, $L=20$ evaluation instance. Dark cells are obstacles, light cells are obstacle-buffer cells, the green circle is the start, and the red star is the target. CP-SAT is globally optimal for the hard-feasible native-HUBO soft objective. The structurally feasible \texttt{neal} sample does not reach the target, illustrating a quadratization/sampling failure mode.}
 \label{fig:decoded_paths}
 \end{figure*}
@@ -223,13 +224,14 @@ The QUAV-style QAOA selector produces a valid shortest path with only one turn a
 
 \subsection{Penalty Sweep}
 The penalty-weight sweep for \texttt{neal} shows that weak structural penalties permit low-energy but infeasible samples. In the updated run, structural feasibility was $0/15$ for $\lambda\in\{50,100,300,600\}$, $4/15$ at $\lambda=1000$, and $5/15$ at $\lambda=2000$. The best feasible soft cost improved from 915.4 to 590.6 between $\lambda=1000$ and $\lambda=2000$, still worse than A*, SA, and CP-SAT.
+Because target arrival depends on penalty balance, the observed zero full-task success cannot be attributed to the sampler alone.
 
 \section{Discussion}
 The results show why the paper's contribution is not a simple claim that quantum computing outperforms classical planning. On this instance, exact CP-SAT proves the optimum of the hard-feasible native-HUBO soft objective, A* is fully successful, and trajectory-SA can find the exact optimum but with poor target-arrival reliability. The decoded paths in Fig.~\ref{fig:decoded_paths} make the solver differences explicit. The QUAV-style QAOA baseline is useful because it shows that a quantum-assisted geometric selector can produce a valid obstacle-free path on the same platform. However, the native HUBO objective distinguishes visibility, temporal buffer-risk, and terminal behavior in a different way. Therefore, same-platform decoded-path evaluation is necessary for fair comparison.
 
 The exact CP-SAT formulation also clarifies the role of quantum-compatible solvers. If a QUBO sampler is used, it must overcome not only path planning but also one-hot, movement, obstacle, target, and quadratization constraints. The evaluation protocol exposes these failure modes by reporting structural feasibility, goal arrival, and full-task success separately.
 
-The QUAV-style row in Table~\ref{tab:unified} should be interpreted carefully: it is a candidate-path selector over generated paths, not a native solution of the full $x_{t,v}$ HUBO. This candidate-path route is practical because feasibility is mostly handled before optimization, but it optimizes over a restricted candidate set. Only \texttt{neal} samples the full penalized QUBO; the other methods construct or enforce some or all feasibility conditions before scoring. Thus the table compares evaluation pathways rather than like-for-like solver difficulty, and A* and CP-SAT remain correctness anchors. If a quadratic sampler is used, the cubic term must first be reduced to quadratic form with auxiliary variables and additional penalties. This reduction is included as a conceptual conversion pathway and a tested failure mode rather than as a complete quadratization-accounting claim.
+The QUAV-style row in Table~\ref{tab:unified} should be interpreted carefully: it is a candidate-path selector over generated paths, not a native solution of the full $x_{t,v}$ HUBO. This candidate-path route is practical because feasibility is mostly handled before optimization, but it optimizes over a restricted candidate set. A* and CP-SAT remain correctness anchors. If a quadratic sampler is used, the cubic term must first be reduced to quadratic form with auxiliary variables and additional penalties. This reduction is included as a conceptual conversion pathway and a tested failure mode rather than as a complete quadratization-accounting claim.
 
 \section{Limitations and Future Work}
 The study is limited to one static grid instance and omits dynamics, delays, field-of-view constraints, and an official QUAV implementation; its rates are not distribution-level estimates. Future work will test multiple instances and sensitivity to grid size, obstacle density and placement, horizon, start/goal locations, and random seeds; vary terminal, structural, and quadratization penalties to separate sampler and penalty effects; compare cubic and quadratic buffer models; and study matched QUAV, moving targets, and stronger candidate generation.
