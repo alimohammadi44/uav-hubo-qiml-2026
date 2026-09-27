@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import argparse
 import csv
+import importlib.metadata
 import json
 import math
-import os
 import platform
 import subprocess
 import sys
@@ -342,6 +342,26 @@ def command_text(args: Sequence[str]) -> str | None:
         return None
 
 
+def package_versions() -> Dict[str, str | None]:
+    """Record the installed solver stack used for an experiment."""
+    packages = ("numpy", "scipy", "dimod", "dwave-neal", "ortools", "matplotlib")
+    versions: Dict[str, str | None] = {}
+    for package in packages:
+        try:
+            versions[package] = importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:
+            versions[package] = None
+    return versions
+
+
+def project_relative_path(path: str | Path) -> str:
+    resolved = Path(path).expanduser().resolve()
+    try:
+        return str(resolved.relative_to(PROJECT_DIR))
+    except ValueError:
+        return str(resolved)
+
+
 def hardware_metadata() -> Dict[str, Any]:
     return {
         "platform": platform.platform(),
@@ -384,7 +404,11 @@ def save_summary(
                 "runtime_per_run_s": metrics.get("runtime_per_run_s"),
             })
     with (output_dir / "multi_instance_summary.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(
+            stream,
+            fieldnames=list(rows[0].keys()),
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(rows)
     manifest = {
@@ -458,6 +482,11 @@ def main() -> None:
         action="store_true",
         help="Run even when required_chip does not match the current machine.",
     )
+    parser.add_argument(
+        "--allow-dirty-source",
+        action="store_true",
+        help="Run even when the Git working tree has uncommitted changes.",
+    )
     args = parser.parse_args()
 
     plan = load_run_plan(args.plan)
@@ -498,6 +527,14 @@ def main() -> None:
         )
     print(f"Hardware verified: {hardware}", flush=True)
 
+    source_revision = command_text(["git", "-C", str(PROJECT_DIR), "rev-parse", "HEAD"])
+    source_status = command_text(["git", "-C", str(PROJECT_DIR), "status", "--porcelain"]) or ""
+    if source_status and not args.allow_dirty_source:
+        raise RuntimeError(
+            "The Git working tree is not clean. Commit or stash changes before a "
+            "publication run, or use --allow-dirty-source for a diagnostic run."
+        )
+
     experiment_name = str(plan.get("experiment_name", "configurable_experiment"))
     safe_name = "".join(character if character.isalnum() or character in "-_" else "_" for character in experiment_name)
     safe_name = safe_name or "configurable_experiment"
@@ -519,10 +556,14 @@ def main() -> None:
     metadata = {
         "schema_version": 2,
         "experiment_name": experiment_name,
-        "plan_path": plan["_path"],
+        "plan_path": project_relative_path(plan["_path"]),
+        "command_argv": [project_relative_path(sys.argv[0]), *sys.argv[1:]],
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "started_at_utc": started.isoformat(),
-        "git_revision": command_text(["git", "-C", str(PROJECT_DIR), "rev-parse", "HEAD"]),
+        "git_revision": source_revision,
+        "source_clean_at_start": not bool(source_status),
+        "python_version": platform.python_version(),
+        "package_versions": package_versions(),
         "hardware": hardware,
         "required_chip": required_chip or None,
         "selected_runs": [name for name, _scenario, _settings in configured],
