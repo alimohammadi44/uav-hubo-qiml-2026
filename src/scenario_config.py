@@ -63,8 +63,10 @@ def shortest_path_distance(scenario: Scenario) -> int | None:
 
 
 def validate_scenario(scenario: Scenario, require_reachable: bool = True) -> None:
-    if not isinstance(scenario.grid_size, int) or scenario.grid_size < 2:
-        raise ValueError("grid_size must be an integer of at least 2.")
+    if not isinstance(scenario.grid_size, int) or isinstance(scenario.grid_size, bool):
+        raise ValueError("grid_size must be the integer 8 for publication experiments.")
+    if scenario.grid_size != 8:
+        raise ValueError("grid_size must be exactly 8 for publication experiments.")
     if not isinstance(scenario.horizon, int) or scenario.horizon < 2:
         raise ValueError("horizon must be an integer of at least 2.")
     if not isinstance(scenario.buffer_radius, int) or scenario.buffer_radius < 0:

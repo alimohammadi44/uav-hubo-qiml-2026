@@ -20,7 +20,7 @@ Cost terms (matching Task 1 mathematical formulation exactly):
   H_occ     (linear)     LOS occlusion penalty — static target form
   H_prox    (CUBIC)      persistent near-obstacle buffer penalty ← HUBO term
   H_goal    (linear)     distance-to-target incentive
-  H_terminal(linear)     strong bonus for reaching target at final step
+  H_terminal(linear)     penalty for missing the target at the final layer
 
 NOTE ON H_goal AND H_terminal
 ------------------------------
@@ -46,14 +46,12 @@ This version uses TRAJECTORY-LEVEL SA:
 This is the correct approach for trajectory optimization problems with
 one-hot and adjacency constraints.
 
-FIXES APPLIED vs. FIRST VERSION
----------------------------------
-Fix 1: Horizon 6 → 14  (UAV can now physically reach the target)
-Fix 2: Weight ratio 100:1 → 10:1  (solver can explore)
-Fix 3: T_start 8 → 25, sweeps 300 → 500  (wider exploration)
-Fix 4: Multiple random restarts  (escapes local optima)
-Fix 5: Trajectory-level SA  (100% feasibility guaranteed)
-Fix 6: Terminal bonus H_terminal  (UAV reaches exact target)
+CURRENT PUBLICATION DEFAULTS
+----------------------------
+- 8×8 grid and 20 trajectory layers
+- structural penalty weights of 1000
+- trajectory-level SA with 500 sweeps and multiple fixed-seed restarts
+- final-layer target-miss penalty H_terminal
 
 OUTPUTS  →  ./outputs/grid/
   bitstring.npy / bitstring.txt    best solution bitstring
@@ -89,8 +87,10 @@ HUBO = Dict[Tuple[int, ...], float]
 @dataclass
 class Scenario:
     """
-    8×8 grid UAV navigation problem.
-    Start (0,0) → Target (7,7), 6 obstacles, 20-layer horizon.
+    Grid UAV navigation problem.
+
+    The defaults reproduce the paper's primary 8×8, 20-layer,
+    six-obstacle instance; JSON experiment plans may override the geometry.
     """
     grid_size : int = 8
     horizon   : int = 20       # Conference run: longer than Manhattan distance=14
@@ -105,8 +105,7 @@ class Scenario:
     ])
     buffer_radius : int = 1
 
-    # Hard constraints — large but not so large the solver freezes
-    # Fix 2: was 1000, now 100 (10:1 ratio with soft terms)
+    # Hard-constraint penalty weights used in the paper.
     lambda_uniq     : float = 1000.0
     lambda_start    : float = 1000.0
     lambda_move     : float = 1000.0
@@ -116,7 +115,7 @@ class Scenario:
     lambda_prox     : float = 5.0
     # Goal terms (stand-ins for the separate tracking implementation)
     lambda_goal     : float = 8.0
-    lambda_terminal : float = 50.0   # Fix 6: strong bonus for exact arrival
+    lambda_terminal : float = 50.0   # penalty for missing final target arrival
 
     # ---- helpers ----
     def cell_index(self, r:int, c:int) -> int: return r*self.grid_size + c
@@ -295,9 +294,9 @@ class GridHUBO:
 
     def H_terminal(self) -> HUBO:
         """
-        Strong bonus for being at the TARGET cell at the FINAL time step.
-        Penalises every non-target cell at t=T-1 by lambda_terminal.
-        This ensures the UAV actually arrives at (7,7).
+        Penalize every non-target cell at the final trajectory layer.
+
+        The configured target is not hard-coded and may vary by experiment.
         """
         d: HUBO = {}
         tv = self.s.cell_index(*self.s.target)

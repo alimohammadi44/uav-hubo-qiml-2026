@@ -14,19 +14,11 @@
   },
   "runs": [
     {
-      "name": "eight_by_eight_example",
+      "name": "alternate_8x8_example",
       "grid_size": 8,
       "start": [0, 0],
       "target": [7, 7],
-      "obstacles": [[2, 3], [5, 4]]
-    },
-    {
-      "name": "six_by_six_example",
-      "grid_size": 6,
-      "horizon": 16,
-      "start": [0, 1],
-      "target": [5, 4],
-      "obstacles": [[2, 2], [3, 3], [4, 1]],
+      "obstacles": [[2, 3], [5, 4]],
       "solver": {
         "rrt_trials": 30,
         "sa_runs": 20

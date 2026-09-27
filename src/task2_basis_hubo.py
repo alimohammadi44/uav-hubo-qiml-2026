@@ -2,6 +2,9 @@
 =============================================================================
 Task 2 — Basis-Function HUBO for UAV Obstacle Avoidance
 =============================================================================
+Exploratory alternative encoding; it is not used for the camera-ready tables
+or claims. The publication model is implemented in task2_grid_hubo.py.
+
 Based on:
   Masnavi et al., "Real-Time Multi-Convex Model Predictive Control for
   Occlusion-Free Target Tracking With Quadrotors," IEEE Access, 2022.

@@ -13,7 +13,7 @@ WHAT THIS DOES
        - occlusion penalty (line-of-sight to target)
        - same start (0,0) and target (7,7)
        - 4-connected movement
-       - planning horizon T=15
+       - planning horizon T=20 in the publication default
   2. Computes the same metrics as our SA/Neal comparison:
        - Best soft cost (occlusion + proximity + goal + terminal)
        - Total runtime

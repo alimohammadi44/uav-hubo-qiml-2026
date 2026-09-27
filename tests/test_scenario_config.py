@@ -11,56 +11,66 @@ from scenario_config import load_run_plan, scenario_from_mapping, shortest_path_
 
 
 class ScenarioConfigTests(unittest.TestCase):
-    def test_variable_grid_start_target_and_obstacles(self):
+    def test_eight_by_eight_start_target_and_obstacles(self):
         scenario = scenario_from_mapping({
-            "grid_size": 6,
-            "horizon": 16,
+            "grid_size": 8,
+            "horizon": 20,
             "start": [0, 1],
-            "target": [5, 4],
+            "target": [7, 6],
             "obstacles": [[2, 2], [3, 3], [4, 1]],
         })
-        self.assertEqual(scenario.grid_size, 6)
+        self.assertEqual(scenario.grid_size, 8)
         self.assertEqual(scenario.start, (0, 1))
-        self.assertEqual(scenario.target, (5, 4))
-        self.assertEqual(shortest_path_distance(scenario), 8)
+        self.assertEqual(scenario.target, (7, 6))
+        self.assertEqual(shortest_path_distance(scenario), 12)
+
+    def test_rejects_non_eight_by_eight_grid(self):
+        with self.assertRaisesRegex(ValueError, "exactly 8"):
+            scenario_from_mapping({
+                "grid_size": 7,
+                "horizon": 16,
+                "start": [0, 0],
+                "target": [6, 6],
+                "obstacles": [],
+            })
 
     def test_rejects_out_of_bounds_obstacle(self):
         with self.assertRaisesRegex(ValueError, "outside the grid"):
             scenario_from_mapping({
-                "grid_size": 5,
-                "horizon": 12,
+                "grid_size": 8,
+                "horizon": 20,
                 "start": [0, 0],
-                "target": [4, 4],
-                "obstacles": [[5, 1]],
+                "target": [7, 7],
+                "obstacles": [[8, 1]],
             })
 
     def test_rejects_duplicate_obstacles(self):
         with self.assertRaisesRegex(ValueError, "unique"):
             scenario_from_mapping({
-                "grid_size": 5,
-                "horizon": 12,
+                "grid_size": 8,
+                "horizon": 20,
                 "start": [0, 0],
-                "target": [4, 4],
+                "target": [7, 7],
                 "obstacles": [[2, 2], [2, 2]],
             })
 
     def test_rejects_target_obstacle(self):
         with self.assertRaisesRegex(ValueError, "target cell"):
             scenario_from_mapping({
-                "grid_size": 5,
-                "horizon": 12,
+                "grid_size": 8,
+                "horizon": 20,
                 "start": [0, 0],
-                "target": [4, 4],
-                "obstacles": [[4, 4]],
+                "target": [7, 7],
+                "obstacles": [[7, 7]],
             })
 
     def test_rejects_horizon_shorter_than_shortest_path(self):
         with self.assertRaisesRegex(ValueError, "horizon"):
             scenario_from_mapping({
-                "grid_size": 5,
-                "horizon": 5,
+                "grid_size": 8,
+                "horizon": 10,
                 "start": [0, 0],
-                "target": [4, 4],
+                "target": [7, 7],
                 "obstacles": [],
             })
 
@@ -68,10 +78,10 @@ class ScenarioConfigTests(unittest.TestCase):
         plan = {
             "runs": [{
                 "name": "../outside",
-                "grid_size": 5,
-                "horizon": 10,
+                "grid_size": 8,
+                "horizon": 20,
                 "start": [0, 0],
-                "target": [4, 4],
+                "target": [7, 7],
                 "obstacles": [],
             }]
         }

@@ -1,12 +1,13 @@
 """
-Exact CP-SAT / MILP baselines for the Ibrahim UAV HUBO/QUBO benchmark.
+CP-SAT reference model for the QIML UAV HUBO/QUBO evaluation.
 
-This script adds exact optimization baselines for the same 8x8, T=20 UAV
-obstacle-avoidance/visibility benchmark used in the QIML paper.
+The paper and configurable publication runner use CP-SAT as their only exact
+solver. An optional scipy/HiGHS MILP implementation remains available here as
+development code, but no MILP result is reported in the paper.
 
-Two models are provided:
-  1) MILP solved by scipy.optimize.milp/HiGHS (run by default).
-  2) CP-SAT solved by OR-Tools if ortools is installed (optional).
+Two implementations are available:
+  1) CP-SAT solved by OR-Tools (the publication default).
+  2) MILP solved by scipy.optimize.milp/HiGHS (optional diagnostic).
 
 The exact model enforces hard path constraints directly:
   - exactly one cell at each time step
@@ -15,14 +16,16 @@ The exact model enforces hard path constraints directly:
   - obstacle cells forbidden
   - only 4-connected/self-loop moves allowed
 
-The objective minimizes the native HUBO soft objective over feasible paths:
+The CP-SAT objective minimizes a 10^3-scaled, integer-rounded version of the
+HUBO soft objective over feasible paths:
   H_occ + H_goal + H_prox + H_terminal.
-Because all hard constraints are enforced, native HUBO energy is reported as
-hard constant (-lambda_uniq*T - lambda_start) plus the optimized soft cost.
+Because all hard constraints are enforced, the unrounded implementation HUBO
+energy is reported as the omitted hard constant
+(-lambda_uniq*T - lambda_start) plus the evaluated soft cost.
 
 Run from code_pkg/src after copying this file there:
-    python cp_milp_exact_baselines.py --mode milp
-    python cp_milp_exact_baselines.py --mode cpsat   # requires ortools
+    python cp_milp_exact_baselines.py                # CP-SAT publication model
+    python cp_milp_exact_baselines.py --mode milp    # optional diagnostic
     python cp_milp_exact_baselines.py --mode both
 
 Outputs:
@@ -492,7 +495,7 @@ def plot_path(path: Path, s: Scenario, out_path: str, title: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=["milp", "cpsat", "both"], default="milp")
+    parser.add_argument("--mode", choices=["milp", "cpsat", "both"], default="cpsat")
     parser.add_argument("--time-limit", type=float, default=300.0)
     parser.add_argument("--mip-gap", type=float, default=0.0)
     parser.add_argument("--workers", type=int, default=8)
