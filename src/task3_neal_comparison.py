@@ -2,9 +2,6 @@
 =============================================================================
 Task 3 — BQM Sampling Benchmark: neal vs Classical SA
 =============================================================================
-Legacy exploratory comparison. Camera-ready results use
-task3_polished_v3_1.py through run_multi_instance_m2max.py.
-
 Based on:
   Masnavi et al., "Real-Time Multi-Convex Model Predictive Control for
   Occlusion-Free Target Tracking With Quadrotors," IEEE Access, 2022.
@@ -18,10 +15,12 @@ Take the grid-based HUBO from Task 2 and benchmark TWO solvers on it:
      (open-source classical simulator of their sampler)
 
 WHY NEAL
---------
-`neal` is a classical CPU simulated-annealing sampler for binary quadratic
-models. It provides a reproducible BQM reference after HUBO-to-QUBO reduction;
-it is not quantum hardware and is not treated as evidence of quantum speedup.
+---------------
+`neal` library simulates the same simulated-annealing algorithm
+their hardware uses internally. It runs on a CPU but uses the
+exact same code path you would use to submit to a external sampler.
+This makes it the gold-standard "quantum-inspired" classical baseline
+for HUBO problems.
 
 HUBO HANDLING
 -------------
