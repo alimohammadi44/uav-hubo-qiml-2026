@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-26T22:57:27.824566+00:00",
+  "started_at_utc": "2026-09-26T22:21:52.777318+00:00",
+  "git_revision": "2d886b06f9710e1bc317b59139858f999cc354ba",
+  "hardware": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "chip": "Apple M2 Max",
+    "model": "Mac14,5",
+    "memory_bytes": 34359738368,
+    "physical_cpu_cores": 12,
+    "logical_cpu_cores": 12
+  },
+  "placement": {
+    "seed": 20260926,
+    "generator": "Python random.Random; nested interior non-touching placements with endpoint, diversity, diagonal, and reachability checks"
+  },
+  "cases": [
+    {
+      "case": "random_2_obstacles",
+      "obstacles": [
+        [
+          2,
+          2
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "output": "random_2_obstacles.json"
+    },
+    {
+      "case": "random_3_obstacles",
+      "obstacles": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "output": "random_3_obstacles.json"
+    }
+  ]
+}

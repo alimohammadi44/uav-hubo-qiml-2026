@@ -1,0 +1,42 @@
+{
+  "experiment_name": "multi_instance_m2max",
+  "required_chip": "Apple M2 Max",
+  "scenario_defaults": {
+    "grid_size": 8,
+    "horizon": 20,
+    "start": [0, 0],
+    "target": [7, 7],
+    "buffer_radius": 1,
+    "require_reachable": true
+  },
+  "solver_defaults": {
+    "solver_seed": 42,
+    "rrt_first_seed": 200,
+    "rrt_trials": 40,
+    "rrt_max_iterations": 1200,
+    "rrt_goal_bias": 0.12,
+    "candidate_random_astar": 80,
+    "candidate_rrt": 80,
+    "qaoa_max_candidates": 12,
+    "qaoa_layers": 1,
+    "qaoa_steps": 60,
+    "cpsat_time_limit_s": 300,
+    "cpsat_workers": 8,
+    "neal_reads": 50,
+    "neal_sweeps": 3000,
+    "sa_runs": 50,
+    "sa_sweeps": 500
+  },
+  "runs": [
+    {
+      "name": "random_2_obstacles",
+      "obstacles": [[2, 2], [6, 4]],
+      "notes": "Fixed realization from placement seed 20260926."
+    },
+    {
+      "name": "random_3_obstacles",
+      "obstacles": [[2, 2], [4, 3], [6, 4]],
+      "notes": "Nested case: adds [4, 3] to the two-obstacle map."
+    }
+  ]
+}

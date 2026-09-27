@@ -1,0 +1,36 @@
+{
+  "experiment_name": "example_custom_maps",
+  "scenario_defaults": {
+    "horizon": 20,
+    "buffer_radius": 1,
+    "require_reachable": true
+  },
+  "solver_defaults": {
+    "solver_seed": 42,
+    "neal_reads": 50,
+    "neal_sweeps": 3000,
+    "sa_runs": 50,
+    "sa_sweeps": 500
+  },
+  "runs": [
+    {
+      "name": "eight_by_eight_example",
+      "grid_size": 8,
+      "start": [0, 0],
+      "target": [7, 7],
+      "obstacles": [[2, 3], [5, 4]]
+    },
+    {
+      "name": "six_by_six_example",
+      "grid_size": 6,
+      "horizon": 16,
+      "start": [0, 1],
+      "target": [5, 4],
+      "obstacles": [[2, 2], [3, 3], [4, 1]],
+      "solver": {
+        "rrt_trials": 30,
+        "sa_runs": 20
+      }
+    }
+  ]
+}

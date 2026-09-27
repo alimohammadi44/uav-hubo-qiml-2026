@@ -154,7 +154,12 @@ def _soft_linear_coeff_for_x(t: int, v: int, s: Scenario, grid: GridHUBO) -> flo
     return float(coeff)
 
 
-def solve_exact_milp(time_limit_s: float = 300.0, mip_rel_gap: float = 0.0, verbose: bool = False) -> Dict[str, object]:
+def solve_exact_milp(
+    time_limit_s: float = 300.0,
+    mip_rel_gap: float = 0.0,
+    verbose: bool = False,
+    scenario: Optional[Scenario] = None,
+) -> Dict[str, object]:
     """Solve exact feasible-path problem with scipy.optimize.milp/HiGHS."""
     try:
         from scipy.optimize import milp, LinearConstraint, Bounds
@@ -162,7 +167,7 @@ def solve_exact_milp(time_limit_s: float = 300.0, mip_rel_gap: float = 0.0, verb
     except Exception as exc:
         return {"status": "not_available", "error": f"scipy.optimize.milp unavailable: {exc}"}
 
-    s = Scenario()
+    s = scenario if scenario is not None else Scenario()
     grid = GridHUBO(s)
     hubo = grid.build()
     T, V = grid.T, grid.V
@@ -299,14 +304,19 @@ def solve_exact_milp(time_limit_s: float = 300.0, mip_rel_gap: float = 0.0, verb
     return out
 
 
-def solve_exact_cpsat(time_limit_s: float = 300.0, workers: int = 8, verbose: bool = False) -> Dict[str, object]:
+def solve_exact_cpsat(
+    time_limit_s: float = 300.0,
+    workers: int = 8,
+    verbose: bool = False,
+    scenario: Optional[Scenario] = None,
+) -> Dict[str, object]:
     """Solve exact feasible-path problem with OR-Tools CP-SAT, if available."""
     try:
         from ortools.sat.python import cp_model
     except Exception as exc:
         return {"method": "CP-SAT exact baseline (OR-Tools)", "status": "not_available", "error": str(exc)}
 
-    s = Scenario()
+    s = scenario if scenario is not None else Scenario()
     grid = GridHUBO(s)
     hubo = grid.build()
     T, V = grid.T, grid.V

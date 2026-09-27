@@ -54,6 +54,42 @@ results/m2max_runtime_benchmark.csv
 results/unified_comparison_m2max.csv
 ```
 
+## Configurable maps and multi-instance runs
+
+Grid geometry is not hard-coded in the multi-instance workflow. Edit
+[`configs/multi_instance_plan.json`](configs/multi_instance_plan.json) to set,
+for every run:
+
+- `grid_size` (an `N x N` grid)
+- `horizon`
+- `start` and `target` as `[row, column]`
+- `obstacles` as a list of `[row, column]` cells
+- optional per-run solver seeds and budgets under `solver`
+
+Validate a plan without running any solver:
+
+```bash
+.venv-m2max/bin/python src/run_multi_instance_m2max.py \
+  --plan configs/multi_instance_plan.json --validate-only
+```
+
+Run every configured map, or select one named run:
+
+```bash
+.venv-m2max/bin/python src/run_multi_instance_m2max.py \
+  --plan configs/multi_instance_plan.json
+
+.venv-m2max/bin/python src/run_multi_instance_m2max.py \
+  --plan configs/multi_instance_plan.json \
+  --run random_2_obstacles
+```
+
+The loader rejects out-of-grid coordinates, duplicate obstacles, obstacles on
+the start/target, unreachable targets, and horizons too short for the shortest
+feasible path. See
+[`configs/example_custom_plan.json`](configs/example_custom_plan.json) for maps
+with different grid sizes, targets, obstacle sets, and run budgets.
+
 ## Notes for reviewers and authors
 
 - `neal` is a classical simulated-annealing sampler, not quantum hardware.
