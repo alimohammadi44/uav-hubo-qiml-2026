@@ -17,7 +17,7 @@
 \setcounter{secnumdepth}{0}
 \graphicspath{{figures/}}
 
-\title{A Feasibility-Aware Evaluation Protocol for HUBO/QUBO UAV Obstacle-Avoidance with Visibility Cost}
+\title{A Feasibility-Aware HUBO/QUBO Benchmark for UAV Obstacle-Avoidance with Visibility Cost}
 
 \author{
 Muhammad Ibrahim\textsuperscript{\rm 1},
@@ -69,7 +69,7 @@ More recent UAV-specific frameworks move closer to the present setting. Q4DR com
 \subsection{QUBO path finding, multi-agent planning, and the gap addressed here}
 Beyond UAV-specific work, recent multi-agent path-finding studies are relevant to encoding and scalability. Gerlach \emph{et al.} propose an optimal hybrid quantum-classical MAPF method based on branch-and-cut-and-prize with iteratively solved QUBO conflict subproblems~\cite{gerlach2025hybrid}. Gonzalez Villasmil proposes a robotics-oriented time-indexed QUBO with BFS-based logical preprocessing, adaptive penalties, and time-window decomposition for multi-robot grid planning~\cite{gonzalez2026scalable}. These works reinforce two lessons that directly motivate our evaluation protocol: path-planning encodings can grow rapidly with space-time discretization, and solver outputs must be interpreted relative to hard feasibility and strong classical references.
 
-Among the works reviewed above, we did not find a study combining a single-UAV time-indexed HUBO with a static line-of-sight cost, a genuinely cubic sustained near-obstacle term, HUBO-to-QUBO conversion, decoded feasibility/goal/full-success reporting, and exact CP-SAT on the same native objective. The contribution is a controlled evaluation protocol showing when favorable binary-optimization energies do or do not represent executable UAV paths, not a quantum-advantage claim or broad instance suite.
+Among the works reviewed above, we did not find a study combining a single-UAV time-indexed HUBO with a static line-of-sight cost, a genuinely cubic sustained near-obstacle term, HUBO-to-QUBO conversion, decoded feasibility/goal/full-success reporting, and exact CP-SAT on the same native objective.
 
 \section{Discrete Planning Model}
 Let $G=(V,E)$ be an $N\times N$ grid graph. In the experiments $N=8$, $|V|=64$, and time layers are indexed $t=0,\ldots,L-1$ with $L=20$. Each time layer is one discrete trajectory frame; a larger $L$ gives the planner more room for detours or hovering but increases the number of variables linearly. Let $O\subset V$ be the obstacle set, $s\in V$ the start cell, and $g\in V$ the target cell. The permitted next-cell set is
@@ -234,10 +234,10 @@ The exact CP-SAT formulation also clarifies the role of quantum-compatible solve
 The QUAV-style row in Table~\ref{tab:unified} should be interpreted carefully: it is a candidate-path selector over generated paths, not a native solution of the full $x_{t,v}$ HUBO. This candidate-path route is practical because feasibility is mostly handled before optimization, but it optimizes over a restricted candidate set. A* and CP-SAT remain correctness anchors. If a quadratic sampler is used, the cubic term must first be reduced to quadratic form with auxiliary variables and additional penalties. This reduction is included as a conceptual conversion pathway and a tested failure mode rather than as a complete quadratization-accounting claim.
 
 \section{Limitations and Future Work}
-The study is limited to one static grid instance and omits dynamics, delays, field-of-view constraints, and an official QUAV implementation; its rates are not distribution-level estimates. Future work will test multiple instances and sensitivity to grid size, obstacle density and placement, horizon, start/goal locations, and random seeds; vary terminal, structural, and quadratization penalties to separate sampler and penalty effects; compare cubic and quadratic buffer models; and study matched QUAV, moving targets, and stronger candidate generation.
+This single static grid omits dynamics, delays, field-of-view constraints, and an official QUAV implementation, so its rates are not distribution-level estimates. Here, ``benchmark'' denotes the reproducible evaluation protocol demonstrated on this single instance, not an instance suite. Future work will develop a broader suite varying grid size, obstacle density and placement, horizon, start/goal locations, and random seeds, with sensitivity and statistical analyses. It will also vary terminal, structural, and quadratization penalties to distinguish sampler from penalty effects; compare cubic and quadratic buffer models; and study matched QUAV, moving targets, and stronger candidate generation.
 
 \section{Conclusion}
-This paper demonstrates a feasibility-aware HUBO/QUBO evaluation protocol for UAV obstacle-avoidance with visibility cost on one fully specified instance. A cubic term models sustained temporal proximity to obstacle-buffer cells. Comparing A*, RRT-best, QUAV-style QAOA, trajectory-SA, \texttt{neal}, and exact CP-SAT shows that geometric path quality, HUBO energy, and trajectory validity are different metrics. The CP-SAT optimum matches the best observed SA path, while quadratized \texttt{neal} has zero full-task success in the tested reads. The contribution is a certified single-instance protocol, not quantum speedup or a general benchmark suite.
+This paper demonstrates a feasibility-aware HUBO/QUBO evaluation protocol for UAV obstacle-avoidance with visibility cost on one fully specified instance. A cubic term models sustained temporal proximity to obstacle-buffer cells. Comparing A*, RRT-best, QUAV-style QAOA, trajectory-SA, \texttt{neal}, and exact CP-SAT shows that geometric path quality, HUBO energy, and trajectory validity are different metrics. The CP-SAT optimum matches the best observed SA path, while quadratized \texttt{neal} has zero full-task success in the tested reads.
 
 \section*{Code Availability}
 Code, figures, logs, and implementations are available at \url{https://github.com/alimohammadi44/uav-hubo-qiml-2026}.
