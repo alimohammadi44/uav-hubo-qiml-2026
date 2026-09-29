@@ -34,9 +34,8 @@ echo "Stage 1/3: A*, 40-trial RRT-best, and QUAV-style QAOA"
 "$PYTHON" src/quav_style_baseline.py 2>&1 | tee "$LOG_DIR/quav_style_baseline.log"
 
 echo
-echo "Stage 2/3: exact CP-SAT baseline (8 workers)"
-"$PYTHON" -c 'from src.cp_sat_exact_baseline import solve_exact_cpsat; import json; r=solve_exact_cpsat(time_limit_s=300, workers=8); print(json.dumps(r, indent=2))' 2>&1 | tee "$LOG_DIR/cpsat_exact.log"
-"$PYTHON" src/cp_sat_exact_baseline.py >/dev/null
+echo "Stage 2/3: exact CP-SAT baseline (default: 8 workers, 300 s limit)"
+"$PYTHON" src/cp_sat_exact_baseline.py 2>&1 | tee "$LOG_DIR/cpsat_exact.log"
 
 echo
 echo "Stage 3/3: 50-read neal and 50-run trajectory-SA"
