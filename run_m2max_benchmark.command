@@ -35,9 +35,8 @@ echo "Stage 1/3: A*, 40-trial RRT-best, and QUAV-style QAOA"
 
 echo
 echo "Stage 2/3: exact CP-SAT baseline (8 workers)"
-"$PYTHON" src/cp_milp_exact_baselines.py \
-    --mode cpsat --workers 8 --time-limit 300 2>&1 | \
-    tee "$LOG_DIR/cpsat_exact.log"
+"$PYTHON" -c 'from src.cp_sat_exact_baseline import solve_exact_cpsat; import json; r=solve_exact_cpsat(time_limit_s=300, workers=8); print(json.dumps(r, indent=2))' 2>&1 | tee "$LOG_DIR/cpsat_exact.log"
+"$PYTHON" src/cp_sat_exact_baseline.py >/dev/null
 
 echo
 echo "Stage 3/3: 50-read neal and 50-run trajectory-SA"
@@ -55,4 +54,3 @@ echo "Benchmark complete. Please send these files to the paper maintainer:"
 echo "  $RESULTS_DIR/m2max_runtime_benchmark.json"
 echo "  $RESULTS_DIR/m2max_runtime_benchmark.csv"
 echo "  $RESULTS_DIR/unified_comparison_m2max.csv"
-
