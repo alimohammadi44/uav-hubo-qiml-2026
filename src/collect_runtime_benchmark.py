@@ -23,7 +23,7 @@ THIS_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = THIS_DIR.parent
 
 QUAV_JSON = THIS_DIR / "outputs" / "quav_style_baseline" / "quav_style_results.json"
-CPSAT_JSON = THIS_DIR / "outputs" / "cp_milp_exact_baselines" / "exact_baseline_results.json"
+CPSAT_JSON = THIS_DIR / "outputs" / "cp_sat_exact_baseline" / "cp_sat_result.json"
 TASK3_JSON = THIS_DIR / "outputs" / "task3_polished_v3_1" / "benchmark_results_v3_1.json"
 BASE_TABLE = PROJECT_DIR / "results" / "unified_comparison_with_cpsat.csv"
 
@@ -130,9 +130,8 @@ def collect_rows(
     if missing:
         raise KeyError(f"QUAV output is missing methods: {missing}")
 
-    cpsat_result = cpsat.get("cpsat")
-    if not isinstance(cpsat_result, dict) or "runtime_s" not in cpsat_result:
-        raise KeyError("CP-SAT output does not contain cpsat.runtime_s")
+    if not isinstance(cpsat, dict) or "runtime_s" not in cpsat:
+        raise KeyError("CP-SAT output does not contain runtime_s")
 
     neal = task3.get("d_wave_neal")
     sa = task3.get("classical_sa")
@@ -148,7 +147,7 @@ def collect_rows(
             1,
             "optimizer run",
         ),
-        runtime_row("CP-SAT exact", cpsat_result["runtime_s"], 1, "solve"),
+        runtime_row("CP-SAT exact", cpsat["runtime_s"], 1, "solve"),
         runtime_row(
             "HUBO trajectory-SA",
             sa["runtime_s"],
@@ -264,4 +263,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
