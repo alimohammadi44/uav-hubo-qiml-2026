@@ -3,9 +3,13 @@
 
 Each notebook embeds its corresponding src/*.py implementation directly in a
 code cell. A lightweight setup cell clones the repository only so shared helper
-modules (for example task2_grid_hubo.py) remain importable. The primary program
-is never executed with %run. Notebook execution also defines __file__ so legacy
-path logic in the embedded scripts works correctly in Jupyter/Colab.
+modules and data remain importable. The primary program is never executed with
+%run. A separate compatibility cell defines __file__ before the implementation
+cell executes, preserving valid placement of any ``from __future__`` imports.
+
+The generator validates every produced notebook for JSON structure, one-to-one
+coverage of src/*.py, absence of %run wrappers, a notebook-safe __file__ value,
+and Python syntax of the embedded implementation.
 """
 from __future__ import annotations
 
@@ -56,6 +60,17 @@ def notebook_for(src: Path) -> dict:
             ],
         },
         {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "# Notebook compatibility for scripts that resolve paths from __file__.\n",
+                f"__file__ = r'{embedded_path}'\n",
+                "print('Notebook source path:', __file__)\n",
+            ],
+        },
+        {
             "cell_type": "markdown",
             "metadata": {},
             "source": ["## Implementation\n", "The code in this cell is the actual implementation, not a `%run` wrapper.\n"],
@@ -65,7 +80,7 @@ def notebook_for(src: Path) -> dict:
             "execution_count": None,
             "metadata": {},
             "outputs": [],
-            "source": [f"__file__ = r'{embedded_path}'\n"] + code.splitlines(keepends=True),
+            "source": code.splitlines(keepends=True),
         },
         {
             "cell_type": "markdown",
@@ -110,9 +125,62 @@ def notebook_for(src: Path) -> dict:
     }
 
 
+def validate_notebooks(expected: set[str]) -> None:
+    actual = {p.name for p in OUT.glob("*.ipynb")}
+    if actual != expected:
+        raise RuntimeError(f"Notebook/source mismatch: expected={sorted(expected)}, actual={sorted(actual)}")
+
+    errors: list[str] = []
+    for path in sorted(OUT.glob("*.ipynb")):
+        try:
+            nb = json.loads(path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            errors.append(f"{path.name}: invalid JSON: {exc}")
+            continue
+
+        if nb.get("nbformat") != 4:
+            errors.append(f"{path.name}: nbformat is not 4")
+
+        all_source = "\n".join(
+            "".join(cell.get("source", [])) for cell in nb.get("cells", [])
+        )
+        if "%run " in all_source:
+            errors.append(f"{path.name}: contains forbidden %run wrapper")
+        if "cp_milp_exact_baselines" in all_source:
+            errors.append(f"{path.name}: contains obsolete cp_milp_exact_baselines reference")
+
+        src_name = path.with_suffix(".py").name
+        expected_file_line = f"__file__ = r'{REPO_DIR}/src/{src_name}'"
+        if expected_file_line not in all_source:
+            errors.append(f"{path.name}: missing notebook-safe __file__ definition")
+
+        implementation_cells = [
+            cell for cell in nb.get("cells", [])
+            if cell.get("cell_type") == "code"
+            and any(line.startswith('"""') or line.startswith("from __future__") for line in cell.get("source", []))
+        ]
+        if not implementation_cells:
+            # Some source files begin with comments/imports instead of docstrings/future imports.
+            code_cells = [cell for cell in nb.get("cells", []) if cell.get("cell_type") == "code"]
+            implementation_cells = code_cells[2:3]
+        if len(implementation_cells) != 1:
+            errors.append(f"{path.name}: could not identify exactly one implementation cell")
+            continue
+
+        source = "".join(implementation_cells[0].get("source", []))
+        try:
+            compile(source, src_name, "exec")
+        except SyntaxError as exc:
+            errors.append(f"{path.name}: embedded Python syntax error: {exc}")
+
+    if errors:
+        raise RuntimeError("Colab validation failed:\n- " + "\n- ".join(errors))
+    print(f"Validated {len(expected)} notebooks: JSON, coverage, __file__, no %run, no cp_milp, syntax OK.")
+
+
 def main() -> None:
     OUT.mkdir(exist_ok=True)
-    expected = set()
+    expected: set[str] = set()
     for src in sorted(SRC.glob("*.py")):
         dst = OUT / f"{src.stem}.ipynb"
         dst.write_text(json.dumps(notebook_for(src), indent=2) + "\n", encoding="utf-8")
@@ -121,6 +189,7 @@ def main() -> None:
         if old.name not in expected:
             old.unlink()
     print(f"Generated {len(expected)} notebook-native Colab notebooks.")
+    validate_notebooks(expected)
 
 
 if __name__ == "__main__":
