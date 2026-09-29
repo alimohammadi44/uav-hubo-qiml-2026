@@ -1,31 +1,18 @@
-# Clean GitHub upload instructions
+# Clean GitHub package instructions
 
-Use these commands from the parent folder after unzipping this package.
+The repository already contains the synchronized paper source, Colab wrappers, figures, results, and compiled PDFs.
 
-## Option 1: Fresh empty repository
+A generated ZIP snapshot is stored at:
 
-```bash
-cd uav_hubo_qiml_2026
-git init
-git add .
-git commit -m "Initial clean QIML UAV HUBO benchmark package"
-git branch -M main
-git remote add origin https://github.com/alimohammadi44/<REPO_NAME>.git
-git push -u origin main
+```text
+release/uav-hubo-qiml-2026-github-package.zip
 ```
 
-## Option 2: Repository already has extra files and should be replaced
-
-Only use this if you want the repository to contain exactly this clean package.
+To clone the live repository instead:
 
 ```bash
-git clone https://github.com/alimohammadi44/<REPO_NAME>.git
-cd <REPO_NAME>
-find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-cp -R ../uav_hubo_qiml_2026/. .
-git add -A
-git commit -m "Replace with clean QIML UAV HUBO benchmark package"
-git push
+git clone https://github.com/alimohammadi44/uav-hubo-qiml-2026.git
+cd uav-hubo-qiml-2026
 ```
 
-Replace `<REPO_NAME>` with the actual repository name.
+The ZIP and repository are generated from the same synchronized source. Do not manually rename the paper contribution from **benchmark** to **evaluation protocol** in the title, abstract, or repository documentation.

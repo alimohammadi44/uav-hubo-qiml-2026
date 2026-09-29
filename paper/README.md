@@ -1,12 +1,14 @@
-# QIML 2026 camera-ready package
+# QIML 2026 submission package
 
-This directory contains the author-visible camera-ready manuscript for the Second AAAI Symposium on Quantum Information & Machine Learning (QIML 2026). It uses the official AAAI-27 LaTeX style and bibliography files (`aaai2027.sty` and `aaai2027.bst`).
+This directory contains the manuscript source and compiled PDFs for:
 
-The paper presents an evaluation protocol demonstrated on one fully specified instance; it does not claim a general instance-suite benchmark or quantum speedup.
+**A Feasibility-Aware HUBO/QUBO Benchmark for UAV Obstacle-Avoidance with Visibility Cost**
+
+The manuscript uses the official AAAI-27 LaTeX style and bibliography files (`aaai2027.sty` and `aaai2027.bst`). It presents a **single-instance feasibility-aware benchmark** and does not claim quantum speedup, quantum advantage, or performance across an instance suite.
 
 ## Build
 
-Run:
+From this directory, run:
 
 ```bash
 pdflatex main.tex
@@ -15,22 +17,31 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-A current TeX Live or MiKTeX installation with the `newtx` and TeX Gyre font packages is required by the AAAI-27 style.
+For the stand-alone abstract:
 
-Citations use the AAAI author--year style, for example `(Qiu et al. 2025)`. The camera-ready source does not use `\nocopyright`, and all fonts in the supplied PDF are embedded Type 1 fonts.
+```bash
+pdflatex abstract.tex
+```
+
+A current TeX Live or MiKTeX installation with the packages required by the AAAI-27 style is needed.
 
 ## Files
 
-- `main.tex`: six-page camera-ready manuscript
-- `QIML_2026_UAV_HUBO_Submission.pdf`: compiled camera-ready paper
-- `abstract.tex` and `QIML_2026_UAV_HUBO_Abstract.pdf`: stand-alone, single-column abstract for convenience; not the CRC manuscript
+- `main.tex`: full manuscript source
+- `QIML_2026_UAV_HUBO_Submission.pdf`: compiled full manuscript
+- `abstract.tex`: stand-alone single-column abstract source
+- `QIML_2026_UAV_HUBO_Abstract.pdf`: compiled stand-alone abstract
 - `references.bib`: bibliography database
-- `figures/`: paper figures
-- `aaai2027.sty` and `aaai2027.bst`: unmodified official AAAI-27 files
+- `figures/`: manuscript figures
+- `aaai2027.sty` and `aaai2027.bst`: AAAI-27 style and bibliography files
 
-## Final author checks
+## Consistency rules
 
-- Confirm author order, spelling, affiliations, and email addresses.
-- Confirm every numerical result and bibliography entry against the experiment logs and cited sources.
-- Upload the CRC only through the AAAI proceedings platform specified in the acceptance email.
-- Follow any additional CRC invitation instructions, including any reproducibility-checklist requirement.
+- The registered/submitted title is exactly: **A Feasibility-Aware HUBO/QUBO Benchmark for UAV Obstacle-Avoidance with Visibility Cost**
+- The paper-level framing is **benchmark**, not "evaluation protocol" as the title/name of the contribution.
+- "Benchmark" refers to the reproducible single-instance study currently reported; it does not imply an instance suite.
+- The reported exact reference is **CP-SAT**.
+- The QUAV-style code is a candidate-path reference, not official QUAV code.
+- `neal` is classical simulated annealing.
+- `L=20` means 20 discrete planning layers, not 20 physical seconds.
+- Submission status does not imply acceptance or publication.
