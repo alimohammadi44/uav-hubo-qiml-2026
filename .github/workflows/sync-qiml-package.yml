@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'tools/sync_qiml_package.py'
+      - 'tools/generate_real_colab_notebooks.py'
       - '.github/workflows/sync-qiml-package.yml'
       - 'paper/**'
       - 'src/**'
@@ -27,8 +28,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Synchronize manuscript wording, docs, and Colab notebooks
+      - name: Synchronize manuscript wording and docs
         run: python3 tools/sync_qiml_package.py
+
+      - name: Generate real Colab notebooks
+        run: python3 tools/generate_real_colab_notebooks.py
 
       - name: Build full manuscript PDF
         uses: xu-cheng/latex-action@v3
@@ -99,6 +103,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No synchronized changes to commit.'
           else
-            git commit -m '[qiml-package-bot] Sync manuscript, PDFs, Colab notebooks, and ZIP package'
+            git commit -m '[qiml-package-bot] Sync manuscript, PDFs, real Colab notebooks, and ZIP package'
             git push origin HEAD:main
           fi
