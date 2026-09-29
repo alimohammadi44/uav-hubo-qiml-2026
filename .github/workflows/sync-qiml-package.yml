@@ -1,0 +1,104 @@
+name: Sync QIML paper package
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/sync_qiml_package.py'
+      - '.github/workflows/sync-qiml-package.yml'
+      - 'paper/**'
+      - 'src/**'
+      - 'figures/**'
+      - 'results/**'
+      - 'requirements.txt'
+      - 'README.md'
+      - 'GITHUB_CLEAN_UPLOAD.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-build-package:
+    if: ${{ !contains(github.event.head_commit.message || '', '[qiml-package-bot]') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Synchronize manuscript wording, docs, and Colab notebooks
+        run: python3 tools/sync_qiml_package.py
+
+      - name: Build full manuscript PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: paper
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Build stand-alone abstract PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: abstract.tex
+          working_directory: paper
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Install PDF inspection tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+
+      - name: Install compiled PDFs and validate them
+        run: |
+          cp paper/main.pdf paper/QIML_2026_UAV_HUBO_Submission.pdf
+          cp paper/abstract.pdf paper/QIML_2026_UAV_HUBO_Abstract.pdf
+          pdfinfo paper/QIML_2026_UAV_HUBO_Submission.pdf | grep -E 'Pages|Page size'
+          pdfinfo paper/QIML_2026_UAV_HUBO_Abstract.pdf | grep -E 'Pages|Page size'
+          pdftotext paper/QIML_2026_UAV_HUBO_Submission.pdf /tmp/qiml-paper.txt
+          grep -F 'A Feasibility-Aware HUBO/QUBO Benchmark' /tmp/qiml-paper.txt
+          grep -F 'feasibility-aware benchmark' /tmp/qiml-paper.txt
+
+      - name: Create synchronized GitHub ZIP package
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+
+          root = Path('.').resolve()
+          out_dir = root / 'release'
+          out_dir.mkdir(exist_ok=True)
+          out = out_dir / 'uav-hubo-qiml-2026-github-package.zip'
+
+          excluded_dirs = {'.git', '.venv', '.venv-m2max', '__pycache__', 'release'}
+          excluded_suffixes = {'.aux', '.bbl', '.blg', '.fdb_latexmk', '.fls', '.log', '.out', '.synctex.gz'}
+          excluded_names = {'main.pdf', 'abstract.pdf'}
+
+          with zipfile.ZipFile(out, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+              for path in sorted(root.rglob('*')):
+                  if not path.is_file():
+                      continue
+                  rel = path.relative_to(root)
+                  if any(part in excluded_dirs for part in rel.parts):
+                      continue
+                  if path.name in excluded_names:
+                      continue
+                  if any(path.name.endswith(s) for s in excluded_suffixes):
+                      continue
+                  zf.write(path, Path('uav-hubo-qiml-2026') / rel)
+          print(f'Created {out} ({out.stat().st_size} bytes)')
+          PY
+
+      - name: Commit synchronized package
+        run: |
+          git config user.name 'qiml-package-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add README.md GITHUB_CLEAN_UPLOAD.md paper/main.tex paper/abstract.tex paper/README.md \
+                  paper/QIML_2026_UAV_HUBO_Submission.pdf paper/QIML_2026_UAV_HUBO_Abstract.pdf \
+                  colab release
+          if git diff --cached --quiet; then
+            echo 'No synchronized changes to commit.'
+          else
+            git commit -m '[qiml-package-bot] Sync manuscript, PDFs, Colab notebooks, and ZIP package'
+            git push origin HEAD:main
+          fi
