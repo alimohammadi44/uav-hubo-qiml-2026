@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Synchronize manuscript wording and docs
         run: python3 tools/sync_qiml_package.py
@@ -104,5 +106,6 @@ jobs:
             echo 'No synchronized changes to commit.'
           else
             git commit -m '[qiml-package-bot] Sync manuscript, PDFs, real Colab notebooks, and ZIP package'
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
