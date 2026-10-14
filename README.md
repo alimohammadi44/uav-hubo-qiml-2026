@@ -13,9 +13,8 @@ The manuscript is the QIML 2026 submission associated with **Paper #4902**. Repo
 Current manuscript files:
 
 - `paper/main.tex` - full manuscript source
-- `paper/QIML_2026_UAV_HUBO_Submission.pdf` - compiled full manuscript
+- `paper/qiml_2026_paper.pdf` - final compiled manuscript
 - `paper/abstract.tex` - stand-alone abstract source
-- `paper/QIML_2026_UAV_HUBO_Abstract.pdf` - compiled stand-alone abstract
 
 ## Repository layout
 
