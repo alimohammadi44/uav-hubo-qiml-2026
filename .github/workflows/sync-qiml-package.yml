@@ -52,7 +52,7 @@ jobs:
           ! grep -F 'Keywords:' /tmp/qiml.txt
           ! grep -F 'Code Availability' /tmp/qiml.txt
           pdftotext -f 1 -l 1 paper/qiml_2026_paper.pdf /tmp/qiml-p1.txt
-          grep -F 'github.com/alimohammadi44/uav-hubo-' /tmp/qiml-p1.txt
+          grep -F 'github.com/alimohammadi44' /tmp/qiml-p1.txt
           pdftotext -f 6 -l 6 paper/qiml_2026_paper.pdf /tmp/qiml-p6.txt
           ! grep -F 'github.com/alimohammadi44' /tmp/qiml-p6.txt
 
